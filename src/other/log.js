@@ -26,10 +26,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var styleSetup_js_1 = __importDefault(require("./styleSetup.js"));
-var logConf = __importStar(require("../configs/logs.json"));
-var cli_colors_1 = __importDefault(require("cli-colors"));
-var fs_1 = require("fs");
+const styleSetup_js_1 = __importDefault(require("./styleSetup.js"));
+const logConf = __importStar(require("../configs/logs.json"));
+const cli_colors_1 = __importDefault(require("cli-colors"));
+const fs_1 = require("fs");
 var LOGLEVEL;
 (function (LOGLEVEL) {
     LOGLEVEL[LOGLEVEL["SAY_GEX"] = -1] = "SAY_GEX";
@@ -68,7 +68,7 @@ function print(text, level, appname, display, saveFile, username) {
     }
     if (saveFile) {
         // that's how we decide the file 
-        (0, fs_1.appendFile)("./src/logs/".concat(appname, ".txt"), "\n ".concat(logMsg), function () { });
+        (0, fs_1.appendFile)(`./src/logs/${appname}.txt`, `\n ${logMsg}`, () => { });
     }
 }
 exports.default = print;

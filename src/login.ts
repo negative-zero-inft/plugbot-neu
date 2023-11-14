@@ -44,9 +44,9 @@ const run = async () =>{
     const acnts = readdirSync("./src/other/accounts").filter(file => file.endsWith(`.json`));
     for(const u of acnts) {
         try {
-            const a: {default: Account} = await import(`./other/accounts/${u}`)
-            accounts.set(a.default.name, a.default); 
-            log(`found account ${a.default.name}`, 4, "shell", true)
+            const a: Account = await require(`./other/accounts/${u}`) 
+            accounts.set(a.name, a); 
+            log(`found account ${a.name}`, 4, "shell", true)
         } catch(e) {
             log(`loading accounts failed:`, 2, "shell", true, true)
             console.error(e)
@@ -55,20 +55,21 @@ const run = async () =>{
     }
 
     // why not use stylesetup if we can
-    rl.question(styleSetup(cfg.login.q.name), (name) =>{
+    rl.question(styleSetup(cfg.login.q.name), async (name) =>{
 
         const acnt = accounts.get(name)
-        if(!acnt) if(name.toLowerCase() === cfg.login.newAccountCmd){newUserProc()}else{log(cfg.login.accountMissingMsg, 1, "shell", true); run()}
+        if(!acnt) if(name.toLowerCase() === cfg.login.newAccountCmd){newUserProc()}else{log(cfg.login.accountMissingMsg, 1, "shell", true); run()}else{
 
-        isInputVisible = false
-        process.stdout.write(styleSetup(cfg.login.q.password))
-        rl.question("", (password) =>{
+            isInputVisible = false
+            process.stdout.write(styleSetup(cfg.login.q.password))
+            rl.question("", (password) =>{
 
-            process.stdout.write("\n") // goofy workaround
-            isInputVisible = true
-            if(compareSync(password, acnt?.password)) return shell(rl)
-            run()
-        })
+                process.stdout.write("\n") // goofy workaround
+                isInputVisible = true
+                if(compareSync(password, acnt?.password)) return shell(rl, acnt)
+                run()
+            })
+        }
     })
 }
 
