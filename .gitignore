@@ -1,1 +1,7 @@
 src/other/accounts/*
+src/logs
+src/other/log.js
+src/shell.js
+.gitignore
+src/login.js
+src/other/log.js
