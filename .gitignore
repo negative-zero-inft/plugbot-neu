@@ -1,2 +1,3 @@
-src/other/accounts
+src/other/accounts/*
+node_modules
 random temp shit
