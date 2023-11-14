@@ -11,3 +11,47 @@
  [14.11.2023 29:12]
 =>[X] no user from shell --> saving user file failed 
  null
+ [14.11.2023 17:15]
+=>[X] no user from shell --> loading plugins failed 
+ SyntaxError: Cannot use import statement outside a module
+ [14.11.2023 18:15]
+=>[X] no user from shell --> loading plugins failed 
+ SyntaxError: Cannot use import statement outside a module
+ [14.11.2023 21:15]
+=>[X] no user from shell --> loading plugins failed 
+ SyntaxError: Cannot use import statement outside a module
+ [14.11.2023 29:15]
+=>[X] no user from shell --> loading plugins failed 
+ SyntaxError: Cannot use import statement outside a module
+ [14.11.2023 36:15]
+=>[X] no user from shell --> loading plugins failed 
+ SyntaxError: Cannot use import statement outside a module
+ [14.11.2023 38:15]
+=>[X] no user from shell --> loading plugins failed 
+ SyntaxError: Cannot use import statement outside a module
+ [14.11.2023 38:15]
+=>[X] no user from shell --> loading plugins failed 
+ SyntaxError: Cannot use import statement outside a module
+ [14.11.2023 39:15]
+=>[X] no user from shell --> loading plugins failed 
+ SyntaxError: Cannot use import statement outside a module
+ [14.11.2023 48:15]
+=>[X] no user from shell --> loading plugins failed 
+ SyntaxError: Cannot use import statement outside a module
+ [14.11.2023 48:15]
+=>[X] no user from shell --> loading plugins failed 
+ SyntaxError: Cannot use import statement outside a module
+ [14.11.2023 50:15]
+=>[X] no user from shell --> loading plugins failed:
+ [14.11.2023 51:15]
+=>[X] no user from shell --> loading plugins failed:
+ [14.11.2023 52:15]
+=>[X] no user from shell --> loading plugins failed:
+ [14.11.2023 52:15]
+=>[X] no user from shell --> loading plugins failed:
+ [14.11.2023 57:15]
+=>[X] no user from shell --> loading plugins failed:
+ [14.11.2023 58:15]
+=>[X] no user from shell --> loading plugins failed:
+ [14.11.2023 0:16]
+=>[X] no user from shell --> loading plugins failed:

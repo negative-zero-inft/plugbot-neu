@@ -2,11 +2,11 @@ import { readdirSync } from "fs";
 import log from "./other/log"
 import { createInterface } from "readline";
 import { Writable } from "stream";
-import styleSetup from "./other/styleSetup";
-import cfg from "./configs/shell.json"
+import styleSetup from "./other/styleSetup.js";
+import * as cfg from "./configs/shell.json"
 import { genSalt, hash, compareSync, compare } from "bcrypt";
 import { appendFileSync } from "fs";
-import shell from "./shell";
+import shell from "./shell"
 
 interface Account {
     name: string
@@ -40,13 +40,16 @@ const accounts: Map<string, Account> = new Map<string, Account>();
 
 const run = async () =>{
 
+    // ily cnb
     const acnts = readdirSync("./src/other/accounts").filter(file => file.endsWith(`.json`));
     for(const u of acnts) {
         try {
             const a: {default: Account} = await import(`./other/accounts/${u}`)
             accounts.set(a.default.name, a.default); 
+            log(`found account ${a.default.name}`, 4, "shell", true)
         } catch(e) {
-            log(`loading accounts failed \n ${e}`, 2, "shell", true, true)
+            log(`loading accounts failed:`, 2, "shell", true, true)
+            console.error(e)
             continue
         }
     }

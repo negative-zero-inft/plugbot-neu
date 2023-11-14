@@ -66,8 +66,8 @@ var fs_1 = require("fs");
 var log_1 = __importDefault(require("./other/log"));
 var readline_1 = require("readline");
 var stream_1 = require("stream");
-var styleSetup_1 = __importDefault(require("./other/styleSetup"));
-var shell_json_1 = __importDefault(require("./configs/shell.json"));
+var styleSetup_js_1 = __importDefault(require("./other/styleSetup.js"));
+var cfg = __importStar(require("./configs/shell.json"));
 var bcrypt_1 = require("bcrypt");
 var fs_2 = require("fs");
 var shell_1 = __importDefault(require("./shell"));
@@ -106,28 +106,30 @@ var run = function () { return __awaiter(void 0, void 0, void 0, function () {
             case 3:
                 a = _a.sent();
                 accounts.set(a.default.name, a.default);
+                (0, log_1.default)("found account ".concat(a.default.name), 4, "shell", true);
                 return [3 /*break*/, 5];
             case 4:
                 e_1 = _a.sent();
-                (0, log_1.default)("loading accounts failed \n ".concat(e_1), 2, "shell", true, true);
+                (0, log_1.default)("loading accounts failed:", 2, "shell", true, true);
+                console.error(e_1);
                 return [3 /*break*/, 5];
             case 5:
                 _i++;
                 return [3 /*break*/, 1];
             case 6:
                 // why not use stylesetup if we can
-                rl.question((0, styleSetup_1.default)(shell_json_1.default.login.q.name), function (name) {
+                rl.question((0, styleSetup_js_1.default)(cfg.login.q.name), function (name) {
                     var acnt = accounts.get(name);
                     if (!acnt)
-                        if (name.toLowerCase() === shell_json_1.default.login.newAccountCmd) {
+                        if (name.toLowerCase() === cfg.login.newAccountCmd) {
                             newUserProc();
                         }
                         else {
-                            (0, log_1.default)(shell_json_1.default.login.accountMissingMsg, 1, "shell", true);
+                            (0, log_1.default)(cfg.login.accountMissingMsg, 1, "shell", true);
                             run();
                         }
                     isInputVisible = false;
-                    process.stdout.write((0, styleSetup_1.default)(shell_json_1.default.login.q.password));
+                    process.stdout.write((0, styleSetup_js_1.default)(cfg.login.q.password));
                     rl.question("", function (password) {
                         process.stdout.write("\n"); // goofy workaround
                         isInputVisible = true;
@@ -142,24 +144,24 @@ var run = function () { return __awaiter(void 0, void 0, void 0, function () {
 }); };
 var newUserProc = function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        rl.question(shell_json_1.default.newAcc.q.name, function (name) {
+        rl.question(cfg.newAcc.q.name, function (name) {
             if (accounts.get(name)) {
-                (0, log_1.default)(shell_json_1.default.newAcc.exists, 1, "shell", true);
+                (0, log_1.default)(cfg.newAcc.exists, 1, "shell", true);
                 return run();
             }
-            if (name.toLowerCase() === shell_json_1.default.login.newAccountCmd) {
-                (0, log_1.default)(shell_json_1.default.newAcc.exists, 1, "shell", true);
+            if (name.toLowerCase() === cfg.login.newAccountCmd) {
+                (0, log_1.default)(cfg.newAcc.exists, 1, "shell", true);
                 return run();
             }
-            rl.question(shell_json_1.default.newAcc.q.pswd, function (pswd) {
-                rl.question(shell_json_1.default.newAcc.q.token, function (token) {
+            rl.question(cfg.newAcc.q.pswd, function (pswd) {
+                rl.question(cfg.newAcc.q.token, function (token) {
                     var newUser = {
                         name: name,
                         password: pswd,
                         token: token
                     };
                     console.log(newUser);
-                    rl.question(shell_json_1.default.newAcc.q.confirm, function (answer) { return __awaiter(void 0, void 0, void 0, function () {
+                    rl.question(cfg.newAcc.q.confirm, function (answer) { return __awaiter(void 0, void 0, void 0, function () {
                         var salt, password;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
@@ -190,7 +192,7 @@ var newUserProc = function () { return __awaiter(void 0, void 0, void 0, functio
         return [2 /*return*/];
     });
 }); };
-rl.on("close", function () {
-    (0, log_1.default)("readline was closed", 1, "shell", true);
-});
+// random rl stuff, feel free to ignore
+rl.on("close", function () { (0, log_1.default)("readline was closed", 1, "shell", true); });
+rl.on("pause", function () { (0, log_1.default)("readline was paused", 1, "shell, true"); });
 run();
