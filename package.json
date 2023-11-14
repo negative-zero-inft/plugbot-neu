@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "@types/node": "^20.9.0",
+    "bcrypt": "^5.1.1",
+    "cli-colors": "^0.0.2",
+    "discord.js": "^14.14.1",
+    "stream": "^0.0.2",
+    "ts-node": "^10.9.1"
+  },
+  "name": "plugbot-neu",
+  "version": "0.0.1",
+  "description": "the next generation of plugbot",
+  "main": "src/login.js",
+  "devDependencies": {},
+  "scripts": {
+    "recomp": "tsc src/login.ts --resolveJsonModule --esModuleInterop && node .",
+    "standard": "node ."
+  },
+  "author": "NRD, catnowblue",
+  "license": "GPL-3.0"
+}

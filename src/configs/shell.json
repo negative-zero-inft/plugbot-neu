@@ -1,0 +1,23 @@
+{
+    "login": {
+
+        "q": {
+
+            "name": "please input the account name (or NEW to create a new account) ",
+            "password": "please input the password for this account "
+        },
+        "accountMissingMsg": "this account does not exist.",
+        "newAccountCmd": "new"
+    },
+    "newAcc": {
+
+        "q": {
+
+            "name": "please input the name of the new account ",
+            "pswd": "please input the password of this account ",
+            "token": "please input the discord token for this account ",
+            "confirm": "is this okay? [Y/N] "
+        },
+        "exists": "this user already exists."
+    }
+}
