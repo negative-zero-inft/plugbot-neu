@@ -1,4 +1,4 @@
-import setupText from "./styleSetup.js";
+import setupText from "./styleSetup.cjs";
 import * as logConf from "../configs/logs.json"
 import colors from "cli-colors"
 import { appendFile } from "fs";

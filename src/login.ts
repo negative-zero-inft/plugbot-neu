@@ -2,7 +2,7 @@ import { readdirSync } from "fs";
 import log from "./other/log"
 import { createInterface } from "readline";
 import { Writable } from "stream";
-import styleSetup from "./other/styleSetup.js";
+import styleSetup from "./other/styleSetup.cjs";
 import * as cfg from "./configs/shell.json"
 import { genSalt, hash, compareSync, compare } from "bcrypt";
 import { appendFileSync } from "fs";
