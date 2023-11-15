@@ -58,22 +58,29 @@ const cmdLoop = async (rl, account) =>{
         const primArgs = line.split(" ")
         if(commands.has(primArgs[0])){
 
-            commands.get(primArgs[0])?.run({
+            try{
+
+                commands.get(primArgs[0])?.run({
     
-                client: client,
-                input: {
+                    client: client,
+                    input: {
+    
+                        raw: line,
+                        args: primArgs
+                    },
+                    cmdTools: {
+    
+                        rl: rl,
+                        mem: mem,   
+                        cmds: commands
+                    },
+                    account: account
+                })
+            }catch(err){
 
-                    raw: line,
-                    args: primArgs
-                },
-                cmdTools: {
-
-                    rl: rl,
-                    mem: mem,   
-                    cmds: commands
-                },
-                account: account
-            })
+                log(`the program has crashed:`, 2, primArgs[0], true)
+                console.error(err)
+            }
         }else log(`command ${primArgs[0]} does not exist`, 1, "shell", true)
         return cmdLoop(rl, account)
     })

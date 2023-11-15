@@ -101,3 +101,145 @@
 =>[i] no user from shell --> entered sendmsg 1095210574826180658 heil into command line
  [15.11.2023 53:14]
 =>[i] no user from shell --> entered sendmsg 1095210574826180658 wie geht's into command line
+ [15.11.2023 2:15]
+=>[i] no user from shell --> entered sendmsg into command line
+ [15.11.2023 2:15]
+=>[i] no user from shell --> entered sendmsg a into command line
+ [15.11.2023 2:15]
+=>[i] no user from shell --> entered sendmsg as sd into command line
+ [15.11.2023 2:15]
+=>[i] no user from shell --> entered sendmsg asd asd ad sa into command line
+ [15.11.2023 3:15]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 i'm currently testing sendmsg into command line
+ [15.11.2023 4:15]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 last test into command line
+ [15.11.2023 4:15]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 FUCK into command line
+ [15.11.2023 4:15]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 it breaks server-side into command line
+ [15.11.2023 5:15]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 h into command line
+ [15.11.2023 5:15]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 i love among us  into command line
+ [15.11.2023 5:15]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 works perfectly :3 into command line
+ [15.11.2023 6:15]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 <@1163390615875235850> yippee into command line
+ [15.11.2023 6:15]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 i'm braindead into command line
+ [15.11.2023 6:15]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 <@390540063609454593> yayy into command line
+ [15.11.2023 7:15]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 nie into command line
+ [15.11.2023 7:15]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 zajeb sie into command line
+ [15.11.2023 7:15]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 :3 into command line
+ [15.11.2023 7:15]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 <@642787500087181324>  into command line
+ [15.11.2023 7:15]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 pa into command line
+ [15.11.2023 7:15]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 kurwa into command line
+ [15.11.2023 8:15]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 zajebiste, nieprawdasz? into command line
+ [15.11.2023 18:15]
+=>[i] no user from shell --> entered reply 1174352001031737465 h into command line
+ [15.11.2023 18:15]
+=>[i] no user from shell --> entered reply 1174352001031737465 asdasds into command line
+ [15.11.2023 19:15]
+=>[i] no user from shell --> entered reply into command line
+ [15.11.2023 19:15]
+=>[i] no user from shell --> entered reply a into command line
+ [15.11.2023 19:15]
+=>[i] no user from shell --> entered reply asdasd asd as d into command line
+ [15.11.2023 20:15]
+=>[i] no user from shell --> entered reply a a into command line
+ [15.11.2023 21:15]
+=>[i] no user from shell --> entered reply a a into command line
+ [15.11.2023 21:15]
+=>[i] no user from shell --> entered reply 1174352001031737465 a into command line
+ [15.11.2023 21:15]
+=>[i] no user from shell --> entered reply 1174352001031737465 a into command line
+ [15.11.2023 21:15]
+=>[i] no user from shell --> entered reply 1174352001031737465 a into command line
+ [15.11.2023 21:15]
+=>[i] no user from shell --> entered reply 1174352001031737465 a into command line
+ [15.11.2023 25:15]
+=>[i] no user from shell --> entered reply a a into command line
+ [15.11.2023 25:15]
+=>[i] no user from shell --> entered reply 1174352001031737465 a into command line
+ [15.11.2023 27:15]
+=>[i] no user from shell --> entered reply 1174352001031737465 a into command line
+ [15.11.2023 30:15]
+=>[i] no user from shell --> entered reply 1174352001031737465 h into command line
+ [15.11.2023 30:15]
+=>[i] no user from shell --> entered reply a a  into command line
+ [15.11.2023 32:15]
+=>[i] no user from shell --> entered reply 1095210574826180658 1174352001031737465 a into command line
+ [15.11.2023 33:15]
+=>[i] no user from shell --> entered reply 1095210574826180658 1174352001031737465 a into command line
+ [15.11.2023 34:15]
+=>[i] no user from shell --> entered reply 1095210574826180658 1174352001031737465 sechs into command line
+ [15.11.2023 35:15]
+=>[i] no user from shell --> entered reply 1095210574826180658 1174352001031737465 h into command line
+ [15.11.2023 35:15]
+=>[i] no user from shell --> entered reply 1095210574826180658 1174352001031737465 h into command line
+ [15.11.2023 37:15]
+=>[i] no user from shell --> entered reply 1095210574826180658  1174352001031737465a into command line
+ [15.11.2023 37:15]
+=>[i] no user from shell --> entered reply 1095210574826180658 1174352001031737465a a into command line
+ [15.11.2023 37:15]
+=>[i] no user from shell --> entered reply 1095210574826180658 1174352001031737465 a into command line
+ [15.11.2023 39:15]
+=>[i] no user from shell --> entered reply 1174352001031737465 a into command line
+ [15.11.2023 40:15]
+=>[i] no user from shell --> entered reply a a  into command line
+ [15.11.2023 40:15]
+=>[i] no user from shell --> entered reply 1174352001031737465 into command line
+ [15.11.2023 40:15]
+=>[i] no user from shell --> entered reply 1174352001031737465 a into command line
+ [15.11.2023 41:15]
+=>[i] no user from shell --> entered reply 1174352001031737465 a  into command line
+ [15.11.2023 42:15]
+=>[i] no user from shell --> entered reply 1174352001031737465 into command line
+ [15.11.2023 42:15]
+=>[i] no user from shell --> entered reply 1174352001031737465 a into command line
+ [15.11.2023 43:15]
+=>[i] no user from shell --> entered reply a a a into command line
+ [15.11.2023 44:15]
+=>[i] no user from shell --> entered reply 1174352001031737465 a a a into command line
+ [15.11.2023 46:15]
+=>[i] no user from shell --> entered reply into command line
+ [15.11.2023 46:15]
+=>[i] no user from shell --> entered reply into command line
+ [15.11.2023 46:15]
+=>[i] no user from shell --> entered reply a into command line
+ [15.11.2023 46:15]
+=>[i] no user from shell --> entered reply into command line
+ [15.11.2023 46:15]
+=>[i] no user from shell --> entered reply into command line
+ [15.11.2023 47:15]
+=>[i] no user from shell --> entered reply into command line
+ [15.11.2023 47:15]
+=>[i] no user from shell --> entered reply into command line
+ [15.11.2023 47:15]
+=>[i] no user from shell --> entered reply into command line
+ [15.11.2023 48:15]
+=>[i] no user from shell --> entered reply 1174352001031737465 a into command line
+ [15.11.2023 49:15]
+=>[i] no user from shell --> entered reply 1174360373177102487 now that's what i call a skill issue into command line
+ [15.11.2023 51:15]
+=>[i] no user from shell --> entered reply 1174360981078560840 a into command line
+ [15.11.2023 53:15]
+=>[i] no user from shell --> entered reply 1174360981078560840 a into command line
+ [15.11.2023 56:15]
+=>[i] no user from shell --> entered reply  1174360981078560840a into command line
+ [15.11.2023 56:15]
+=>[i] no user from shell --> entered reply 1174360981078560840 a into command line
+ [15.11.2023 57:15]
+=>[i] no user from shell --> entered reply 1174360981078560840 a into command line
+ [15.11.2023 58:15]
+=>[i] no user from shell --> entered reply 1174362643914559560 a into command line
+ [15.11.2023 0:16]
+=>[i] no user from shell --> entered reply 1174362643914559560 a into command line
