@@ -49,7 +49,7 @@ const cmdLoop = async (rl: Interface, account: Account) =>{
     
     for(const u of cmds) {
         try {
-            const a: Plugin = await require(`./commands/${u}`)
+            const a: Command = await require(`./commands/${u}`)
             commands.set(a.name, a); 
         } catch(e) {
             log(`loading commands failed:`, 2, "shell", true)

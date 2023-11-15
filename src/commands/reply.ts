@@ -6,6 +6,7 @@ module.exports = { // alr lemme run it
     name: "reply",
     developers: ["nrd"],
     version: "0.0.1",
+    usage: "reply [message ID to reply to] [reply]",
     run: (tools: CmdTools) =>{
 
         // if(!tools.input.args[1]) return log(`please input the message id that you're replying to`, 1, "sendmsg", true)

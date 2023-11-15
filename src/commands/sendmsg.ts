@@ -7,6 +7,7 @@ module.exports = {
     name: "sendmsg",
     developers: ["nrd"],
     version: "1.0.0",
+    usage: "sendmsg [channel ID to send a message in] [message]",
     run: (tools: CmdTools) =>{
 
         if(!tools.input.args[1]) return log(`please input the channel id`, 1, "sendmsg", true)

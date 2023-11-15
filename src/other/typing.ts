@@ -39,5 +39,6 @@ export interface Command{
     name: string
     developers: Array<string>
     version: number
+    usage: string
     run: (tools: CmdTools) => void
 }
