@@ -23,5 +23,9 @@
     "bot": {
 
         "ready": "the bot has successfully logged in."
+    },
+    "shell": {
+        
+        "prompt": "['DD'.'DM'.'DY' 'DMI':'DH']'N'['U' @ 'HN']'N'==>>"
     }
 }

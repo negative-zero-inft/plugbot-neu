@@ -77,3 +77,11 @@
 =>[V] no user from shell --> finished saving user nrd
  [14.11.2023 19:18]
 =>[V] no user from shell --> finished saving user nrd
+ [15.11.2023 59:10]
+=>[i] no user from shell --> entered help into command line
+ [15.11.2023 59:10]
+=>[i] no user from shell --> entered test into command line
+ [15.11.2023 0:11]
+=>[i] no user from shell --> entered test into command line
+ [15.11.2023 3:11]
+=>[i] no user from shell --> entered test into command line

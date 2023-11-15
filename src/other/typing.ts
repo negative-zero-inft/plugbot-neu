@@ -14,7 +14,17 @@ export interface PluginTools {
 }
 export interface CmdTools {
     client: Client,
-    rl: Interface,
+    input: {
+
+        raw: string,
+        args: string[]
+    },
+    cmdTools: {
+
+        rl: Interface,
+        mem,   
+        cmds
+    },
     account: Account
     // i just realized plugins don't need rl
 }
