@@ -21,6 +21,10 @@ export default function print(text: string, level: LOGLEVEL, appname: string, di
         
         switch(level){
 
+            case LOGLEVEL.SAY_GEX:
+                console.log("why did you input a negative number into this") // shh
+                break
+
             case LOGLEVEL.STANDARD:
                 console.log(logMsg)
                 break

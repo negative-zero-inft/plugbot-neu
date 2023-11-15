@@ -73,3 +73,7 @@
 =>[X] no user from shell --> loading accounts failed:
  [14.11.2023 38:17]
 =>[X] no user from shell --> loading accounts failed:
+ [14.11.2023 10:18]
+=>[V] no user from shell --> finished saving user nrd
+ [14.11.2023 19:18]
+=>[V] no user from shell --> finished saving user nrd

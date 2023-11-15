@@ -26,7 +26,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const styleSetup_js_1 = __importDefault(require("./styleSetup.js"));
+const styleSetup_cjs_1 = __importDefault(require("./styleSetup.cjs"));
 const logConf = __importStar(require("../configs/logs.json"));
 const cli_colors_1 = __importDefault(require("cli-colors"));
 const fs_1 = require("fs");
@@ -42,10 +42,13 @@ var LOGLEVEL;
 function print(text, level, appname, display, saveFile, username) {
     if (!username)
         username = "no user";
-    var logMsg = (0, styleSetup_js_1.default)(logConf.body, username);
+    var logMsg = (0, styleSetup_cjs_1.default)(logConf.body, username);
     logMsg = logMsg.replace("'LT'", logConf.symbols[level]).replace("'LOG'", text).replace("'USER'", username).replace("'APP'", appname);
     if (display) {
         switch (level) {
+            case LOGLEVEL.SAY_GEX:
+                console.log("why did you input a negative number into this"); // shh
+                break;
             case LOGLEVEL.STANDARD:
                 console.log(logMsg);
                 break;

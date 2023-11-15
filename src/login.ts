@@ -7,12 +7,7 @@ import * as cfg from "./configs/shell.json"
 import { genSalt, hash, compareSync, compare } from "bcrypt";
 import { appendFileSync } from "fs";
 import shell from "./shell"
-
-interface Account {
-    name: string
-    password: string
-    token: string
-} 
+import { Account } from "./other/typing";
 
 // useful for passwords
 var isInputVisible = true;
@@ -41,6 +36,7 @@ const accounts: Map<string, Account> = new Map<string, Account>();
 const run = async () =>{
 
     // ily cnb
+    // me too nrd <3 :3
     const acnts = readdirSync("./src/other/accounts").filter(file => file.endsWith(`.json`));
     for(const u of acnts) {
         try {
@@ -103,17 +99,17 @@ const newUserProc = async () =>{
                     }
                     if(answer.toLowerCase() === "y" || "yes"){
 
-                        await appendFileSync(`./src/other/accounts/${name.replace('/', "_")}.json`, JSON.stringify(newUser))
+                        appendFileSync(`./src/other/accounts/${name.replace('/', "_")}.json`, JSON.stringify(newUser))
                         log(`finished saving user ${name}`, 4, "shell", true, true)
                     }
                     return run()
                 })
             })
         })
-    })
+    }) 
 }
-
-// random rl stuff, feel free to ignore
+// yea commands is empty o
+// 
 rl.on("close", () =>{log("readline was closed", 1, "shell", true)})
 rl.on("pause", () =>{log("readline was paused", 1, "shell, true")})
 run()

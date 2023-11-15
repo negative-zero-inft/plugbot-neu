@@ -19,5 +19,9 @@
             "confirm": "is this okay? [Y/N] "
         },
         "exists": "this user already exists."
+    },
+    "bot": {
+
+        "ready": "the bot has successfully logged in."
     }
 }

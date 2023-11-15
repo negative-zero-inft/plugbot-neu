@@ -5,3 +5,7 @@ src/shell.js
 .gitignore
 src/login.js
 src/other/log.js
+node_modules
+src/plugins/*
+src/typing.js
+src/other/log.js
