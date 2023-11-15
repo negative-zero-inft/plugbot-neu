@@ -42,4 +42,4 @@ export interface Command{
     version: number
     run: (tools: CmdTools) => void
 }
-// :3 *hugs you* *hugs you back*
+
