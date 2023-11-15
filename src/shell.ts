@@ -45,7 +45,6 @@ const cmdLoop = async (rl, account) =>{
     for(const u of cmds) {
         try {
             const a: Plugin = await require(`./commands/${u}`)
-            log(`found plugin ${a.name}`, 4, "shell", true)
             commands.set(a.name, a); 
         } catch(e) {
             log(`loading commands failed:`, 2, "shell", true)
