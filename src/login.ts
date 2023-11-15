@@ -9,8 +9,10 @@ import { appendFileSync } from "fs";
 import shell from "./shell"
 import { Account } from "./other/typing";
 
-// useful for passwords
+// set to false when dealing with passwords
 var isInputVisible = true;
+
+// no way stdout premium :fire:
 
 const stdoutPremium = new Writable({
 
@@ -31,12 +33,10 @@ const rl = createInterface({
 })
 const accounts: Map<string, Account> = new Map<string, Account>(); 
 
-// i have no clue why it won't work unless i put it in an async func :fire:
-
 const run = async () =>{
 
     // ily cnb
-    // me too nrd <3 :3
+    // me too nrd <3 :3 *hugs you* *hugs too*
     const acnts = readdirSync("./src/other/accounts").filter(file => file.endsWith(`.json`));
     for(const u of acnts) {
         try {
@@ -49,8 +49,7 @@ const run = async () =>{
             continue
         }
     }
-
-    // why not use stylesetup if we can
+    
     rl.question(styleSetup(cfg.login.q.name), async (name) =>{
 
         const acnt = accounts.get(name)

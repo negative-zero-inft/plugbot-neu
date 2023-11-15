@@ -243,3 +243,11 @@
 =>[i] no user from shell --> entered reply 1174362643914559560 a into command line
  [15.11.2023 0:16]
 =>[i] no user from shell --> entered reply 1174362643914559560 a into command line
+ [15.11.2023 58:18]
+=>[i] no user from shell --> entered reply 1174362643914559560 a into command line
+ [15.11.2023 18:19]
+=>[i] no user from shell --> entered help into command line
+ [15.11.2023 18:19]
+=>[i] no user from shell --> entered help into command line
+ [15.11.2023 19:19]
+=>[i] no user from shell --> entered help into command line

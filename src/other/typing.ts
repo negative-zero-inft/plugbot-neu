@@ -10,8 +10,8 @@ export interface Account {
 export interface PluginTools {
     client: Client,
     account: Account
-    // i just realized plugins don't need rl
 }
+
 export interface CmdTools {
     client: Client,
     input: {
@@ -22,24 +22,22 @@ export interface CmdTools {
     cmdTools: {
 
         rl: Interface,
-        mem,   
-        cmds
+        mem: Map<any, any>
+        cmds: Map<string, Command>
     },
     account: Account
-    // i just realized plugins don't need rl
 }
+
 export interface Plugin{
-    // tools are whatever we decide pass down in the future
     name: string
     developers: Array<string>
     version: number
-    run: (tools: PluginTools) => void
+    run: (tools: PluginTools) => void 
 }
+
 export interface Command{
-    // tools are whatever we decide pass down in the future
     name: string
     developers: Array<string>
     version: number
     run: (tools: CmdTools) => void
 }
-

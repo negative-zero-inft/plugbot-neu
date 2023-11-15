@@ -5,7 +5,7 @@ import { Plugin } from "./typing";
 
 // a custom class based on Discord.JS' client
 export class PlugBot extends Client {
-    public commands: Collection<string, {}>
+    
     public plugins: Map<string, Plugin> 
     public constructor() {
 

@@ -1,4 +1,3 @@
-// import suffering from "hell"
 import log from "./other/log"
 import * as cfg from "./configs/shell.json"
 import { readdirSync } from "fs";
@@ -19,6 +18,9 @@ export default async (rl: Interface, account: Account) =>{
     client.login(account.token)
     client.once(Events.ClientReady, () =>run(rl, account)) // just wanted to put it somewhere else :3
 }
+
+// runs when the client finished logging in
+
 const run = async (rl: Interface, account: Account) => {
 
     log(cfg.bot.ready, 4, "shell", true)
@@ -40,7 +42,10 @@ const run = async (rl: Interface, account: Account) => {
     }
     cmdLoop(rl, account)
 }
-const cmdLoop = async (rl, account) =>{
+
+// runs every time you need to type a command
+
+const cmdLoop = async (rl: Interface, account: Account) =>{
     
     for(const u of cmds) {
         try {

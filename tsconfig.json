@@ -3,7 +3,11 @@
 
         "module": "NodeNext",
         "moduleResolution": "NodeNext",
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
     },
-    "files": ["./src/login.ts", "src/plugins/slashCmdTestPlugin.ts", "src/commands/sendmsg.ts", "src/commands/reply.ts"]
+    // :skull:
+    // why not folder?
+    // like "includes": ["./src"]
+    // that would be bombed with compiled js next to actual source code
+    "files": ["./src/login.ts", "src/plugins/slashCmdTestPlugin.ts", "src/commands/sendmsg.ts", "src/commands/reply.ts", "src/commands/help.ts"]
 }
