@@ -1,4 +1,5 @@
 import { Client } from "discord.js"
+import { PlugBot } from "./client"
 import { Interface } from "readline"
 
 export interface Account {

@@ -16,7 +16,7 @@ const mem = new Map()
 export default async (rl: Interface, account: Account) =>{
 
     client.login(account.token)
-    client.once(Events.ClientReady, () =>run(rl, account)) // just wanted to put it somewhere else :3
+    client.once(Events.ClientReady, () =>run(rl, account)) 
 }
 
 // runs when the client finished logging in

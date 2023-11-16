@@ -9,5 +9,6 @@
     // why not folder?
     // like "includes": ["./src"]
     // that would be bombed with compiled js next to actual source code
-    "files": ["./src/login.ts", "src/plugins/slashCmdTestPlugin.ts", "src/commands/sendmsg.ts", "src/commands/reply.ts", "src/commands/help.ts"]
+    // it did not work xd
+    "files": ["./src/login.ts", "src/commands/sendmsg.ts", "src/commands/reply.ts", "src/commands/help.ts", "src/plugins/msgLogger.ts"]
 }

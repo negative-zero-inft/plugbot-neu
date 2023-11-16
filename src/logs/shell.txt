@@ -251,3 +251,19 @@
 =>[i] no user from shell --> entered help into command line
  [15.11.2023 19:19]
 =>[i] no user from shell --> entered help into command line
+ [16.11.2023 46:12]
+=>[V] no user from shell --> finished saving user nrd
+ [16.11.2023 46:12]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 <@390540063609454593> told you i'm gonna do it into command line
+ [16.11.2023 5:13]
+=>[i] no user from shell --> entered sendmsg 390540063609454593 it should be working smoothly now into command line
+ [16.11.2023 6:13]
+=>[i] no user from shell --> entered sendmsg 390540063609454593 amsodasmdo into command line
+ [16.11.2023 8:13]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 asdmasd into command line
+ [16.11.2023 8:13]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 nvm im just retarded into command line
+ [16.11.2023 8:13]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 i was inputing some random ass id instead of the channelid into command line
+ [16.11.2023 8:13]
+=>[i] no user from shell --> entered sendmsg 1095210574826180658 whoopsy daisy into command line

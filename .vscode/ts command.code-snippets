@@ -34,5 +34,24 @@
 			"	}",
 			"}"
 		]
+	},
+	"plugin": {
+
+		"scope": "javascript,typescript",
+		"prefix": "plg",
+		"body": [
+
+			"import { PluginTools } from \"../other/typing\"",
+			"",
+			"module.exports = {",
+
+			"	name: \"$1\",",
+			"	developers: [$2],",
+			"	version: \"$3\",",
+			"	run: (tools: PluginTools) =>{",
+			"	$4",
+			"	}",
+			"}"
+		]
 	}
 }
