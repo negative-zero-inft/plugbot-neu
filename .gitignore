@@ -6,7 +6,6 @@ src/shell.js
 src/login.js
 src/other/log.js
 node_modules
-src/plugins/*
 src/typing.js
 src/other/log.js
 src/commands/sendmsg.js
