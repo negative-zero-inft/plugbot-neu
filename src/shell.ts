@@ -6,8 +6,8 @@ import { Account, Plugin, Command } from "./other/typing";
 import { Interface } from "readline";
 import { PlugBot } from "./other/client";
 
-const pgins = readdirSync("./src/plugins").filter(file => file.endsWith(`.js`));
-const cmds = readdirSync("./src/commands").filter(file => file.endsWith(`.js`));
+const pgins = readdirSync("./build/plugins").filter(file => file.endsWith(`.js`));
+const cmds = readdirSync("./build/commands").filter(file => file.endsWith(`.js`));
 const client = new PlugBot();
 const commands = new Map<string, Command>()
 const mem = new Map()
@@ -19,18 +19,19 @@ export default async (rl: Interface, account: Account) =>{
 }
 
 // runs when the client finished logging in
-
 const run = async (rl: Interface, account: Account) => {
 
     log(cfg.bot.ready, 4, "shell", true)
+    console.log(pgins)
     for(const u of pgins) {
         try {
             const a: Plugin = await require(`./plugins/${u}`)
             log(`found plugin ${a.name}`, 4, "shell", true)
-            client.plugins.set(a.name, a); 
-            a.run({
+            client.plugins.set(a.name, a);
+            console.log(a.name)
+            client.plugins.get(a.name)?.run({
                 client, account
-            })
+            }) 
         } catch(e) {
             log(`loading plugins failed:`, 2, "shell", true)
             console.error(e)

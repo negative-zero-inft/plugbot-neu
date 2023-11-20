@@ -34,10 +34,10 @@ const accounts: Map<string, Account> = new Map<string, Account>();
 
 const run = async () =>{
 
-    const acnts = readdirSync("./src/other/accounts").filter(file => file.endsWith(`.json`));
+    const acnts = readdirSync("./accounts").filter(file => file.endsWith(`.json`));
     for(const u of acnts) {
         try {
-            const a: Account = await require(`./other/accounts/${u}`) 
+            const a: Account = await require(`../accounts/${u}`) 
             accounts.set(a.name, a); 
             log(`found account ${a.name}`, 4, "shell", true)
         } catch(e) {
@@ -95,7 +95,7 @@ const newUserProc = async () =>{
                     }
                     if(answer.toLowerCase() === "y" || "yes"){
 
-                        appendFileSync(`./src/other/accounts/${name.replace('/', "_")}.json`, JSON.stringify(newUser))
+                        appendFileSync(`./accounts/${name.replace('/', "_")}.json`, JSON.stringify(newUser))
                         log(`finished saving user ${name}`, 4, "shell", true, true)
                     }
                     return run()

@@ -3,7 +3,7 @@ import { log } from "../other/utils"
 import { Events } from "discord.js"
 import { PluginTools } from "../other/typing"
 
-module.exports = {
+export = {
     
     name: "plugin for testing / cmds",
     developers: ["NRD", "CatNowBlue"],
