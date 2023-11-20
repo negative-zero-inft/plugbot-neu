@@ -1,13 +1,23 @@
 import { REST, Routes, SlashCommandBuilder } from "discord.js"
 import { log } from "../other/utils"
 import { Events } from "discord.js"
-import { PluginTools } from "../other/typing"
+import { PluginTools, Plugin } from "../other/typing"
 
 export = {
-    
+    // :fire:
     name: "plugin for testing / cmds",
     developers: ["NRD", "CatNowBlue"],
     version: "0.0.1",
+    cmds: [],
+    cmdLoader: () =>{
+        
+        return [{
+
+            name: "femboy",
+            desc: "generates an image of a femboy",
+            usage: "femboy"
+        }]
+    },
     run: (tools: PluginTools) =>{
 
         const commands: object[] = []

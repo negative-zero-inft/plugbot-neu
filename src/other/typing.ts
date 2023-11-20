@@ -6,7 +6,7 @@ export interface Account {
     name: string
     password: string
     token: string
-} 
+}
 
 export interface PluginTools {
     client: Client,
@@ -27,17 +27,26 @@ export interface CmdTools {
     account: Account
 }
 
-export interface Plugin{
+export interface PluginCommand {
+
+    name: string
+    desc: string
+    usage: string
+}
+
+export interface Plugin {
+    name: string
+    cmds?: PluginCommand[]
+    developers: Array<string>
+    version: number
+    cmdLoader?: () => PluginCommand[]
+    run: (tools: PluginTools) => void
+}
+
+export interface Command {
     name: string
     developers: Array<string>
     version: number
-    run: (tools: PluginTools) => void 
-}
-
-export interface Command{
-    name: string
-    developers: Array<string>
-    version: number 
     usage: string
     run: (tools: CmdTools) => void
 }

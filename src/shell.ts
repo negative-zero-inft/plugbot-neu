@@ -22,14 +22,13 @@ export default async (rl: Interface, account: Account) =>{
 const run = async (rl: Interface, account: Account) => {
 
     log(cfg.bot.ready, 4, "shell", true)
-    console.log(pgins)
     for(const u of pgins) {
         try {
-            const a: Plugin = await require(`./plugins/${u}`)
+            let a: Plugin = await require(`./plugins/${u}`)
             log(`found plugin ${a.name}`, 4, "shell", true)
+            if(typeof a.cmdLoader == "function") a.cmds = await a.cmdLoader() 
             client.plugins.set(a.name, a);
-            console.log(a.name)
-            client.plugins.get(a.name)?.run({
+            a?.run({
                 client, account
             }) 
         } catch(e) {
