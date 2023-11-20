@@ -1,14 +1,12 @@
 import { Message, TextChannel } from "discord.js";
 import { CmdTools } from "../other/typing";
 import { isValidSnowflake, log } from "../other/utils";
-// :333 <3
-// i literally can't see where
-// there must be there somewhere but idk how it did :skull: lmao do it but in private dm 
-export = { // alr
+
+export = {
     name: "reply",
     developers: ["nrd", "catnowblue"],
     version: "1.0.0",
-    usage: "reply [message ID to reply to] [reply]",
+    usage: "reply [message ID to reply to] [channel ID of the message] [reply]",
     run: (tools: CmdTools) => {
 
         const channelId = tools.input.args[2]

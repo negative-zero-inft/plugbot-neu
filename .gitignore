@@ -1,15 +1,4 @@
 src/other/accounts/*
 src/logs
-src/other/log.js
-src/shell.js
-.gitignore
-src/login.js
-src/other/log.js
 node_modules
-src/typing.js
-src/other/log.js
-src/commands/sendmsg.js
-src/commands/reply.js
-src/commands/help.js
-src/other/client.js
-src/other/typing.js
+src/**/*.js
