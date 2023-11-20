@@ -16,12 +16,10 @@ export interface PluginTools {
 export interface CmdTools {
     client: Client,
     input: {
-
         raw: string,
         args: string[]
     },
     cmdTools: {
-
         rl: Interface,
         mem: Map<any, any>
         cmds: Map<string, Command>
@@ -39,7 +37,7 @@ export interface Plugin{
 export interface Command{
     name: string
     developers: Array<string>
-    version: number
+    version: number 
     usage: string
     run: (tools: CmdTools) => void
 }

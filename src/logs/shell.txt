@@ -267,3 +267,13 @@
 =>[i] no user from shell --> entered sendmsg 1095210574826180658 i was inputing some random ass id instead of the channelid into command line
  [16.11.2023 8:13]
 =>[i] no user from shell --> entered sendmsg 1095210574826180658 whoopsy daisy into command line
+ [20.11.2023 30:19]
+=>[i] no user from shell --> entered reply 1095210341396385924 1176210122838638743 a into command line
+ [20.11.2023 58:19]
+=>[i] no user from shell --> entered help into command line
+ [20.11.2023 59:19]
+=>[i] no user from shell --> entered reply 1176233776012083321 1095210574826180658 твоя мати into command line
+ [20.11.2023 59:19]
+=>[i] no user from shell --> entered reply 1176228130868973639 твоя мати into command line
+ [20.11.2023 0:20]
+=>[i] no user from shell --> entered reply 1176210122838638743 1095210341396385924 saygex into command line

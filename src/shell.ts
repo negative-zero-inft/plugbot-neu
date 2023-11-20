@@ -1,11 +1,10 @@
-import log from "./other/log"
+import { styleSetup, log } from "./other/utils";
 import * as cfg from "./configs/shell.json"
 import { readdirSync } from "fs";
 import { Events } from "discord.js";
 import { Account, Plugin, Command } from "./other/typing";
 import { Interface } from "readline";
 import { PlugBot } from "./other/client";
-import styleSetup from "./other/styleSetup.cjs"
 
 const pgins = readdirSync("./src/plugins").filter(file => file.endsWith(`.js`));
 const cmds = readdirSync("./src/commands").filter(file => file.endsWith(`.js`));
@@ -29,10 +28,8 @@ const run = async (rl: Interface, account: Account) => {
             const a: Plugin = await require(`./plugins/${u}`)
             log(`found plugin ${a.name}`, 4, "shell", true)
             client.plugins.set(a.name, a); 
-            client.plugins.get(a.name)?.run({
-
-                client: client,
-                account: account
+            a.run({
+                client, account
             })
         } catch(e) {
             log(`loading plugins failed:`, 2, "shell", true)

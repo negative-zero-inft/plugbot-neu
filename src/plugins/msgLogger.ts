@@ -1,11 +1,11 @@
 import { Events } from "discord.js"
 import { PluginTools } from "../other/typing"
-import log from "../other/log"
+import { log } from "../other/utils"
 
 module.exports = {
     name: "msgLogger",
     developers: ["nrd"],
-    version: "0.0.1",
+    version: "1.0.0",
     run: (tools: PluginTools) =>{
         
         tools.client.on(Events.MessageCreate, (msg) =>{

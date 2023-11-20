@@ -1,30 +1,28 @@
-import log from "../other/log"
+import { Message, TextChannel } from "discord.js";
 import { CmdTools } from "../other/typing";
-
-module.exports = { // alr lemme run it
-
+import { isValidSnowflake, log } from "../other/utils";
+// :333 <3
+// i literally can't see where
+// there must be there somewhere but idk how it did :skull: lmao do it but in private dm 
+export = { // alr
     name: "reply",
-    developers: ["nrd"],
-    version: "0.0.1",
+    developers: ["nrd", "catnowblue"],
+    version: "1.0.0",
     usage: "reply [message ID to reply to] [reply]",
-    run: (tools: CmdTools) =>{
+    run: (tools: CmdTools) => {
 
-        // if(!tools.input.args[1]) return log(`please input the message id that you're replying to`, 1, "sendmsg", true)
-        // if(!tools.input.args[2]) return log(`please input the message content`, 1, "sendmsg", true)
-        const msg = tools.input.args.splice(2).join(" ")
-        tools.client.channels.cache.forEach(async (channel) => {
+        const channelId = tools.input.args[2]
+        const messageId = tools.input.args[1]
 
-            if (channel.type !== 0) return
-            const message = await channel.
-            messages.fetch(tools.input.args[1])
-            if(!message) return
-            // ss your view  
-            try{
-                message.reply(msg) 
-                // log(`replied with ${msg} to ${message''.content} (sent by ${message.author})`, 4, "sendmsg", true, true)
-            }catch(err) {
-                console.error(err)                     
-            }
+        if (!messageId || !isValidSnowflake(messageId)) return log(`please input the message id that you're replying to`, 1, "sendmsg", true)
+        if (!channelId || !isValidSnowflake(channelId)) return log(`please input the channel id that you're replying in`, 1, "sendmsg", true)
+        if (!tools.input.args[3]) return log(`please input the message content`, 1, "sendmsg", true)
+
+        const msg = tools.input.args.splice(3).join(" ")
+        const channel = tools.client.channels.cache.get(channelId) as TextChannel
+        channel.messages.fetch(messageId).then(m => {
+            m.reply(msg)
+            log(`sent ${msg} in reply to ${m.content}`, 4, "reply", true, true)
         })
     }
 }

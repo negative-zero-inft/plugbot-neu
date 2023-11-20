@@ -1,8 +1,7 @@
 import { readdirSync } from "fs";
-import log from "./other/log"
 import { createInterface } from "readline";
 import { Writable } from "stream";
-import styleSetup from "./other/styleSetup.cjs";
+import { styleSetup, log } from "./other/utils";
 import * as cfg from "./configs/shell.json"
 import { genSalt, hash, compareSync, compare } from "bcrypt";
 import { appendFileSync } from "fs";
@@ -35,8 +34,6 @@ const accounts: Map<string, Account> = new Map<string, Account>();
 
 const run = async () =>{
 
-    // ily cnb
-    // me too nrd <3 :3 *hugs you* *hugs too*
     const acnts = readdirSync("./src/other/accounts").filter(file => file.endsWith(`.json`));
     for(const u of acnts) {
         try {
