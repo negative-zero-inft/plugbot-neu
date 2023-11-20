@@ -1,4 +1,4 @@
 src/other/accounts/*
 src/logs
 node_modules
-src/**/*.js
+build/

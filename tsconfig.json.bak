@@ -1,0 +1,17 @@
+// old config
+
+{
+    "compilerOptions": {
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "resolveJsonModule": true,
+    },
+    // :skull:
+    // why not folder?
+    // like "includes": ["./src"]
+    // that would be bombed with compiled js next to actual source code
+    // it did not work xd
+    "include": [
+        "src/**/*.ts"
+    ]
+}

@@ -17,6 +17,7 @@ module.exports = {
                 data: new SlashCommandBuilder()
                 .setName('test')
                 .setDescription('o lukin e nasin pali pi ilo ni'),
+            // @ts-ignore
             execute: async (interaction) => {
                 await interaction.reply(`nimi pi jan kepeken li **${tools.account.name}** \n ${interaction.user.username} li kepeken ilo ni`);
             }

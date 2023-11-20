@@ -1,6 +1,6 @@
 // this file won't get bloated at all
 import * as logConf from "../configs/logs.json"
-import colors from "cli-colors"
+import colors from "chalk";
 import { appendFile } from "fs";
 
 export function isValidSnowflake(id: string | number | bigint): boolean {
@@ -74,7 +74,7 @@ export function styleSetup (tosetup: string, username?: string){
     .replace(/'OSTYPE'/g, ostype)
     .replace(/'CPUARCH'/g, cpuarch)
     .replace(/'CPUCLOCK'/g, cpuclock)
-    .replace(/'U'/g, username)
+    .replace(/'U'/g, username || "unknown")
     .replace(/'HN'/g, hostname)
 
     return finishedproduct
