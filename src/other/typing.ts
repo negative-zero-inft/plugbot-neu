@@ -1,4 +1,4 @@
-import { Client } from "discord.js"
+import { Client, Interaction } from "discord.js"
 import { PlugBot } from "./client"
 import { Interface } from "readline"
 
@@ -27,11 +27,20 @@ export interface CmdTools {
     account: Account
 }
 
+export interface PluginCmdTools {
+
+    // will complete later
+    client: Client
+    interaction: Interaction
+}
+
 export interface PluginCommand {
 
     name: string
     desc: string
     usage: string
+    version: string
+    exec: (tools: PluginCmdTools) => void
 }
 
 export interface Plugin {
