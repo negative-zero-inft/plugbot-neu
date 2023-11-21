@@ -18,11 +18,12 @@ export = {
                 log(`found command ${a.name}`, 4, "zeroMod", true)
                 commands.set(a.name, a);
             } catch(e) {
-                log(`loading plugins failed:`, 2, "zeroMod", true)
+                log(`loading commands failed:`, 2, "zeroMod", true)
                 console.error(e)
                 continue
             }
         }
+        return commands
     },
     run: (tools: PluginTools) =>{
         

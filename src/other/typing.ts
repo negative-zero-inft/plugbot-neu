@@ -31,9 +31,10 @@ export interface PluginCmdTools {
 
     // will complete later
     client: Client
-    interaction: Interaction
+    interaction: Interaction // idk how to make it so that this works with textcmds, something for cnb to figure out ig :3
 }
 
+// designed with /cmds in mind, will prob need some changing
 export interface PluginCommand {
 
     name: string

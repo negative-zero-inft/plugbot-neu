@@ -1,4 +1,4 @@
-export interface profile{
+export interface profile {
 
     hp: number
     strikes: strike[]
@@ -6,7 +6,7 @@ export interface profile{
     quarantined: boolean
 }
 
-export interface strike{
+export interface strike {
 
     case: number
     explanation: string
