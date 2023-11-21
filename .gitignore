@@ -2,3 +2,4 @@ accounts/*
 src/logs
 node_modules
 build/
+logs/*
