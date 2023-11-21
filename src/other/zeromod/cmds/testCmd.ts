@@ -6,7 +6,7 @@ export = {
     desc: "test",
     usage: "/test",
     version: "0.0.0",
-    exec: (tools: PluginCmdTools) =>{
+    exec: (tools: PluginCmdTools) => {
 
         tools.interaction.channel?.send("h")
     }
