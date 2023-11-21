@@ -130,6 +130,6 @@ export function log(text: string, level: LOGLEVEL, appname: string, display?: bo
 
     if(saveFile){
         // that's how we decide the file 
-        appendFile(`./build/logs/${appname}.txt`, `\n ${logMsg}`, () =>{})
+        appendFile(`./logs/${appname}.txt`, `\n ${logMsg}`, () =>{})
     }
 }
