@@ -104,8 +104,6 @@ const newUserProc = async () =>{
         })
     }) 
 }
-// yea commands is empty o
-// 
 rl.on("close", () =>{log("readline was closed", 1, "shell", true)})
 rl.on("pause", () =>{log("readline was paused", 1, "shell, true")})
 run()
