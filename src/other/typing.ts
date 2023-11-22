@@ -61,5 +61,6 @@ export interface Command {
     developers: Array<string>
     version: number
     usage: string
+    desc: string
     run: (tools: CmdTools) => void
 }

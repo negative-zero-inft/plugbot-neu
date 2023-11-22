@@ -4,7 +4,9 @@ import { log } from "../other/utils"
 module.exports = {
     name: "exit",
     developers: ["nrd"],
-    version: "1.0.0",
+    version: "1.0.1",
+    desc: "shut down plugbot",
+    usage: "exit",
     run: (tools: CmdTools) =>{
     
         log("closing plugbot...", 0, "exit")

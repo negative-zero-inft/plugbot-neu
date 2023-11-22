@@ -6,7 +6,8 @@ export = {
 
     name: "sendmsg",
     developers: ["nrd"],
-    version: "1.0.1",
+    version: "1.0.2",
+    desc: "send a message to any discord channel that the bot is in",
     usage: "sendmsg [channel ID to send a message in] [message]",
     run: (tools: CmdTools) => {
 

@@ -5,7 +5,8 @@ import { isValidSnowflake, log } from "../other/utils";
 export = {
     name: "reply",
     developers: ["nrd", "catnowblue"],
-    version: "1.0.0",
+    version: "1.0.1",
+    desc: "reply to a message on discord",
     usage: "reply [message ID to reply to] [channel ID of the message] [reply]",
     run: (tools: CmdTools) => {
 
