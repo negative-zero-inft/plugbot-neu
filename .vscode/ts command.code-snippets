@@ -48,8 +48,12 @@
 			"	name: \"$1\",",
 			"	developers: [$2],",
 			"	version: \"$3\",",
+			"	cmds: [$4]",
+			"	cmdLoader: () =>{"
+			"		$5",
+			"	},"
 			"	run: (tools: PluginTools) =>{",
-			"	$4",
+			"	$6",
 			"	}",
 			"}"
 		]
