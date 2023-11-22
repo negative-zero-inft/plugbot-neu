@@ -1,5 +1,4 @@
 import { Client, Interaction } from "discord.js"
-import { PlugBot } from "./client"
 import { Interface } from "readline"
 
 export interface Account {
@@ -8,13 +7,17 @@ export interface Account {
     token: string
 }
 
+export interface PlugBot extends Client{
+
+    plugins: Map<string, Plugin>
+}
 export interface PluginTools {
-    client: Client,
+    client: PlugBot,
     account: Account
 }
 
 export interface CmdTools {
-    client: Client,
+    client: PlugBot,
     input: {
         raw: string,
         args: string[]
@@ -30,7 +33,7 @@ export interface CmdTools {
 export interface PluginCmdTools {
 
     // will complete later
-    client: Client
+    client: PlugBot
     interaction: Interaction // idk how to make it so that this works with textcmds, something for cnb to figure out ig :3
 }
 

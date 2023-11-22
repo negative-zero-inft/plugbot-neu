@@ -48,7 +48,7 @@
 			"	name: \"$1\",",
 			"	developers: [$2],",
 			"	version: \"$3\",",
-			"	cmds: [$4]",
+			"	cmds: [$4],",
 			"	cmdLoader: () =>{"
 			"		$5",
 			"	},"
