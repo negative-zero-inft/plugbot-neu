@@ -14,7 +14,7 @@ export = {
         const cmds = readdirSync("./build/other/zeromod/cmds").filter(file => file.endsWith(`.js`));
         for (const u of cmds) {
             try {
-                let a: PluginCommand = await require(`./plugins/${u}`)
+                let a: PluginCommand = await require(`../other/zeromod/cmds/${u}`)
                 log(`found command ${a.name}`, 4, "zeroMod", true)
                 commands.set(a.name, a);
             } catch (e) {
