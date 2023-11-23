@@ -5,7 +5,7 @@ import { CmdTools } from "../other/typing";
 export = {
 
     name: "sendmsg",
-    developers: ["nrd"],
+    developers: ["nrd", "catnowblue"],
     version: "1.0.2",
     desc: "send a message to any discord channel that the bot is in",
     usage: "sendmsg [channel ID to send a message in] [message]",
