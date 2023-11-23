@@ -44,7 +44,7 @@ export interface PluginCommand {
     desc: string
     usage: string
     version: string
-    exec: (tools: PluginCmdTools) => void
+    exec: (tools: PluginCmdTools) => void | Promise<void>
 }
 
 export interface Plugin {
@@ -53,7 +53,7 @@ export interface Plugin {
     developers: Array<string>
     version: number
     cmdLoader?: () => PluginCommand[] | Promise<PluginCommand[]>
-    run: (tools: PluginTools) => void
+    run: (tools: PluginTools) => void | Promise<void>
 }
 
 export interface Command {
@@ -62,5 +62,5 @@ export interface Command {
     version: number
     usage: string
     desc: string
-    run: (tools: CmdTools) => void
+    run: (tools: CmdTools) => void | Promise<void>
 }
