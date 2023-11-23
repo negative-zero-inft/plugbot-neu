@@ -31,6 +31,7 @@ const rl = createInterface({
     output: stdoutPremium,
     terminal: true
 })
+
 const accounts: Map<string, Account> = new Map<string, Account>();
 
 const run = async () => {
