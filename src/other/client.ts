@@ -5,12 +5,12 @@ import { Plugin } from "./typing";
 
 export class PlugBot extends Client {
     
-    public plugins: Map<string, Plugin> 
+    public plugins: Map<string, Plugin>; 
     public constructor() {
 
         super({
             intents: [GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages]
-        })
+        });
 
         this.plugins = new Map();
     }

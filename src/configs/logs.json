@@ -1,4 +1,10 @@
 {
-    "body": "['DD'.'DM'.'DY' 'DMI':'DH']\n=>['LT'] 'U' from 'APP' --> 'LOG'",
-    "symbols": ["i", "!", "X", "X", "V"]
+    "body": "['DD'.'DM'.'DY' 'DH':'DMI']\n=>['LT'] 'U' from 'APP' --> 'LOG'",
+    "symbols": [
+        "i",
+        "!",
+        "X",
+        "X",
+        "V"
+    ]
 }

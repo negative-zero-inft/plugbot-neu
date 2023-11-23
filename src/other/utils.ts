@@ -1,135 +1,134 @@
+/* eslint-disable indent */
 // this file won't get bloated at all
-import * as logConf from "../configs/logs.json"
+import * as logConf from "../configs/logs.json";
 import colors from "chalk";
 import { appendFile } from "fs";
+import os from "os";
 
 export function isValidSnowflake(id: string | number | bigint): boolean {
-    id = id.toString()
+    id = id.toString();
 
-    return /[0-9]{19,}/.test(id)
+    return /[0-9]{19,}/.test(id);
 }
 
-export function styleSetup (tosetup: string, username?: string){
+export function styleSetup(tosetup: string, username?: string) {
 
-    const os = require('os')
+    let totalmem = os.totalmem();
+    let freemem = os.freemem();
 
-    var totalmem = os.totalmem()
-    var freemem = os.freemem()
-            
-    totalmem = totalmem / 1024 / 1024 / 1024
-    freemem = freemem / 1024 / 1024 / 1024
-            
-    var freememgb = Math.round(freemem * 1)
-    var totalmemgb = Math.round(totalmem * 1)
-            
-    var cpus = os.cpus()
-            
-    var cpumodel = cpus[0].model
-            
-    var ostype = os.type
+    totalmem = totalmem / 1024 / 1024 / 1024;
+    freemem = freemem / 1024 / 1024 / 1024;
 
-    var cpuarch = os.arch
+    const freememgb = Math.round(freemem * 1);
+    const totalmemgb = Math.round(totalmem * 1);
 
-    var cpuclock = cpus[0].speed
+    const cpus = os.cpus();
 
-    var hostname = os.hostname
+    const cpumodel = cpus[0].model;
 
-    let date_ob = new Date();
+    const ostype = os.type;
 
-    let date = ("0" + date_ob.getDate()).slice(-2);
+    const cpuarch = os.arch;
+
+    const cpuclock = cpus[0].speed;
+
+    const hostname = os.hostname;
+
+    const date_ob = new Date();
+
+    const date = ("0" + date_ob.getDate()).slice(-2);
 
     // current month
-        
-    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-        
+
+    const month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
     // current year
 
-    let year = date_ob.getFullYear();
-        
+    const year = date_ob.getFullYear();
+
     // current hours
 
-    let hours = date_ob.getHours();
-        
+    const hours = date_ob.getHours();
+
     // current minutes
-    
-    let _minutes = date_ob.getMinutes();
-        
-    let minutes = _minutes.toString().length == 0 ? "0" + _minutes.toString() : _minutes
+
+    const _minutes = date_ob.getMinutes();
+
+    const minutes = _minutes.toString().length == 0 ? "0" + _minutes.toString() : _minutes;
 
     // current seconds
 
-    let seconds = date_ob.getSeconds();
-    
-    const finishedproduct = tosetup
-    .replace(/'DY'/g, `${year}`)
-    .replace(/'DD'/g, `${date}`)
-    .replace(/'DM'/g, `${month}`)
-    .replace(/'DH'/g, `${hours}`)
-    .replace(/'DMI'/g, `${minutes}`)
-    .replace(/'DS'/g, `${seconds}`)
-    .replace(/'N'/g, `\n`)
-    .replace(/'FM'/g, `${freememgb}`)
-    .replace(/'AM'/g, `${totalmemgb}`)
-    .replace(/'CPUM'/g, cpumodel)
-    .replace(/'OSTYPE'/g, ostype)
-    .replace(/'CPUARCH'/g, cpuarch)
-    .replace(/'CPUCLOCK'/g, cpuclock)
-    .replace(/'U'/g, username || "unknown")
-    .replace(/'HN'/g, hostname)
+    const seconds = date_ob.getSeconds();
 
-    return finishedproduct
+    const finishedproduct = tosetup
+        .replace(/'DY'/g, `${year}`)
+        .replace(/'DD'/g, `${date}`)
+        .replace(/'DM'/g, `${month}`)
+        .replace(/'DH'/g, `${hours}`)
+        .replace(/'DMI'/g, `${minutes}`)
+        .replace(/'DS'/g, `${seconds}`)
+        .replace(/'N'/g, "\n")
+        .replace(/'FM'/g, `${freememgb}`)
+        .replace(/'AM'/g, `${totalmemgb}`)
+        .replace(/'CPUM'/g, cpumodel)
+        .replace(/'OSTYPE'/g, ostype)
+        .replace(/'CPUARCH'/g, cpuarch)
+        .replace(/'CPUCLOCK'/g, `${cpuclock}`)
+        .replace(/'U'/g, username || "unknown")
+        .replace(/'HN'/g, hostname);
+
+    return finishedproduct;
 }
 
-enum LOGLEVEL  {
+enum LOGLEVEL {
     SAY_GEX = -1,
     STANDARD = 0,
     WARN,
     ERROR,
     CRIT,
-    SUCCESS 
-}   
+    SUCCESS
+}
 
 export function log(text: string, level: LOGLEVEL, appname: string, display?: boolean, saveFile?: boolean, username?: string) {
-    
-    if(!username) username = "no user"
-    var logMsg: string = styleSetup(logConf.body, username)
-    logMsg = logMsg.replace("'LT'", logConf.symbols[level]).replace("'LOG'", text).replace("'USER'", username).replace("'APP'", appname)
-    if(display) {
-        
-        switch(level){
 
+    if (!username) username = "no user";
+    let logMsg: string = styleSetup(logConf.body, username);
+    logMsg = logMsg.replace("'LT'", logConf.symbols[level]).replace("'LOG'", text).replace("'USER'", username).replace("'APP'", appname);
+    if (display) {
+
+        switch (level) {
             case LOGLEVEL.SAY_GEX:
-                console.log("why did you input a negative number into this") // shh
-                break
+                console.log("why did you input a negative number into this"); // shh
+                break;
 
             case LOGLEVEL.STANDARD:
-                console.log(logMsg)
-                break
+                console.log(logMsg);
+                break;
 
-            case LOGLEVEL.WARN: 
-                console.warn(colors.yellow(logMsg))
-                break
+            case LOGLEVEL.WARN:
+                console.warn(colors.yellow(logMsg));
+                break;
 
             case LOGLEVEL.ERROR:
-                console.error(colors.red(logMsg))
-                break
+                console.error(colors.red(logMsg));
+                break;
 
             case LOGLEVEL.CRIT:
-                console.error(colors.bgRed(logMsg))
-                break
+                console.error(colors.bgRed(logMsg));
+                break;
 
             case LOGLEVEL.SUCCESS:
-                console.log(colors.green(logMsg))
-                break
+                console.log(colors.green(logMsg));
+                break;
 
             default:
-                console.log(logMsg)
-                break
+                console.log(logMsg);
+                break;
         }
     }
 
-    if(saveFile){
+    if (saveFile) {
         // that's how we decide the file 
-        appendFile(`./logs/${appname}.txt`, `\n ${logMsg}`, () =>{})
+        appendFile(`./logs/${appname}.txt`, `\n ${logMsg}`, () => { });
     }
 }

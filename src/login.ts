@@ -2,15 +2,15 @@ import { readdirSync } from "fs";
 import { createInterface } from "readline";
 import { Writable } from "stream";
 import { styleSetup, log } from "./other/utils";
-import * as cfg from "./configs/shell.json"
-import { genSalt, hash, compareSync, compare } from "bcrypt";
+import * as cfg from "./configs/shell.json";
+import { genSalt, hash, compareSync } from "bcrypt";
 import { appendFileSync } from "fs";
-import shell from "./shell"
+import shell from "./shell";
 import { Account } from "./other/typing";
 import { exit } from "process";
 
 // set to false when dealing with passwords
-var isInputVisible = true;
+let isInputVisible = true;
 
 // no way stdout premium :fire:
 
@@ -24,90 +24,91 @@ const stdoutPremium = new Writable({
         }
         callback();
     }
-})
+});
 const rl = createInterface({
 
     input: process.stdin,
     output: stdoutPremium,
     terminal: true
-})
+});
+
 const accounts: Map<string, Account> = new Map<string, Account>();
 
 const run = async () => {
 
-    const acnts = readdirSync("./accounts").filter(file => file.endsWith(`.json`));
+    const acnts = readdirSync("./accounts").filter(file => file.endsWith(".json"));
     for (const u of acnts) {
         try {
-            const a: Account = await require(`../accounts/${u}`)
+            const a: Account = await require(`../accounts/${u}`);
             accounts.set(a.name, a);
-            log(`found account ${a.name}`, 4, "shell", true)
+            log(`found account ${a.name}`, 4, "shell", true);
         } catch (e) {
-            log(`loading accounts failed:`, 2, "shell", true, true)
-            console.error(e)
-            continue
+            log("loading accounts failed:", 2, "shell", true, true);
+            console.error(e);
+            continue;
         }
     }
 
     rl.question(styleSetup(cfg.login.q.name), async (name) => {
 
-        const acnt = accounts.get(name)
-        if (!acnt) if (name.toLowerCase() === cfg.login.newAccountCmd) { newUserProc() } else { log(cfg.login.accountMissingMsg, 1, "shell", true); run() } else {
+        const acnt = accounts.get(name);
+        if (!acnt) if (name.toLowerCase() === cfg.login.newAccountCmd) { newUserProc(); } else { log(cfg.login.accountMissingMsg, 1, "shell", true); run(); } else {
 
-            isInputVisible = false
-            process.stdout.write(styleSetup(cfg.login.q.password))
+            isInputVisible = false;
+            process.stdout.write(styleSetup(cfg.login.q.password));
             rl.question("", (password) => {
 
-                process.stdout.write("\n") // goofy workaround
-                isInputVisible = true
-                if (compareSync(password, acnt?.password)) return shell(rl, acnt)
-                run()
-            })
+                process.stdout.write("\n"); // goofy workaround
+                isInputVisible = true;
+                if (compareSync(password, acnt?.password)) return shell(rl, acnt);
+                run();
+            });
         }
-    })
-}
+    });
+};
 
 const newUserProc = async () => {
 
     rl.question(cfg.newAcc.q.name, (name) => {
 
-        if (accounts.get(name)) { log(cfg.newAcc.exists, 1, "shell", true); return run() }
-        if (name.toLowerCase() === cfg.login.newAccountCmd) { log(cfg.newAcc.exists, 1, "shell", true); return run() }
+        if (accounts.get(name)) { log(cfg.newAcc.exists, 1, "shell", true); return run(); }
+        if (name.toLowerCase() === cfg.login.newAccountCmd) { log(cfg.newAcc.exists, 1, "shell", true); return run(); }
 
         rl.question(cfg.newAcc.q.pswd, (pswd) => {
 
             rl.question(cfg.newAcc.q.token, (token) => {
 
-                var newUser = {
+                let newUser = {
 
                     name: name,
                     password: pswd,
                     token: token
-                }
-                console.log(newUser)
+                };
+                console.log(newUser);
                 rl.question(cfg.newAcc.q.confirm, async (answer) => {
 
-                    const salt = await genSalt(10)
-                    const password = await hash(pswd, salt)
+                    const salt = await genSalt(10);
+                    const password = await hash(pswd, salt);
                     newUser = {
 
                         name: name,
                         password: password,
                         token: token
-                    }
-                    if (answer.toLowerCase() === "y" || "yes") {
+                    };
+                    if (answer.toLowerCase() === "y" || answer.toLowerCase() === "yes") {
 
-                        appendFileSync(`./accounts/${name.replace('/', "_")}.json`, JSON.stringify(newUser))
-                        log(`finished saving user ${name}`, 4, "shell", true, true)
+                        appendFileSync(`./accounts/${name.replace("/", "_")}.json`, JSON.stringify(newUser));
+                        log(`finished saving user ${name}`, 4, "shell", true, true);
                     }
-                    return run()
-                })
-            })
-        })
-    })
-}
+                    return run();
+                });
+            });
+        });
+    });
+};
 rl.on("close", () => {
-    log("readline was closed", 1, "shell", true)
-    exit()
-})
-rl.on("pause", () => { log("readline was paused", 1, "shell, true") })
-run()
+    log("readline was closed", 1, "shell", true);
+    exit();
+});
+rl.on("pause", () => { log("readline was paused", 1, "shell, true"); });
+run();

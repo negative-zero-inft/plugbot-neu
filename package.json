@@ -15,13 +15,19 @@
   "description": "the next generation of plugbot",
   "main": "build/login.js",
   "scripts": {
-    "recomp": "tsc && node .",
+    "recomp": "eslint && rimraf ./build && tsc && node .",
     "standard": "node .",
-    "check": "tsc --noEmit"
+    "check": "tsc --noEmit",
+    "lint": "eslint",
+    "fix": "eslint --fix ."
   },
   "author": "NRD, catnowblue",
   "license": "GPL-3.0",
   "devDependencies": {
-    "@types/bcrypt": "^5.0.2"
+    "@types/bcrypt": "^5.0.2",
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0",
+    "eslint": "^8.54.0",
+    "rimraf": "^5.0.5"
   }
 }

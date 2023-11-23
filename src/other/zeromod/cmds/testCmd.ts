@@ -8,6 +8,6 @@ export = {
     version: "0.0.0",
     exec: (tools: PluginCmdTools) => {
 
-        tools.interaction.channel?.send("h")
+        tools.interaction.channel?.send("h");
     }
 }
