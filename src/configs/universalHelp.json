@@ -1,0 +1,6 @@
+{ 
+
+    "textCmds": true,
+    "slashCmds": false,
+    "embedColor": "0xffffff"
+}

@@ -33,8 +33,6 @@ module.exports = {
 				"argsIgnorePattern": "^_"
 			}
 		],
-		// <3 i ended up ignoring this file
-		// gtg for a bit <3
 		"linebreak-style": [
 			"error",
 			"unix"

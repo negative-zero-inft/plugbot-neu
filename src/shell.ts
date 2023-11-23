@@ -25,7 +25,7 @@ const run = async (rl: Interface, account: Account) => {
     for(const u of pgins) {
         try {
             const a: Plugin = await require(`./plugins/${u}`);
-            log(`found plugin ${a.name}`, 4, "shell", true);
+            log(`found plugin ${a.name} (${a.version})`, 4, "shell", true);
             if(typeof a.cmdLoader == "function") a.cmds = await a.cmdLoader(); 
             client.plugins.set(a.name, a);
             a?.run({

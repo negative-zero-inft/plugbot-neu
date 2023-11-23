@@ -3,6 +3,7 @@
 import * as logConf from "../configs/logs.json";
 import colors from "chalk";
 import { appendFile } from "fs";
+import Color from "color";
 import os from "os";
 
 export function isValidSnowflake(id: string | number | bigint): boolean {
@@ -131,4 +132,26 @@ export function log(text: string, level: LOGLEVEL, appname: string, display?: bo
         // that's how we decide the file 
         appendFile(`./logs/${appname}.txt`, `\n ${logMsg}`, () => { });
     }
+}
+
+// oh :3 <3
+export function colorConverter(color: string | number): number { 
+    return Color(color).rgbNumber()
+}
+
+
+// used for buttons' custom id to prevent from duplicate trigger
+export function uniqueID(length: number) {
+    let result = "";
+    const characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+        result += characters.charAt(
+            Math.floor(Math.random() * charactersLength),
+        );
+        counter += 1;
+    }
+    return result;
 }
