@@ -106,7 +106,7 @@ async function textCmdHandler(allCmds: cmdCollection[], tools: PluginTools, msg:
 module.exports = {
     name: "universalHelp",
     developers: ["nrd", "catnowblue"],
-    version: "0.0.1",
+    version: "0.0.2",
     cmds: [],
     cmdLoader: () => {
 
@@ -128,8 +128,10 @@ module.exports = {
     run: async (tools: PluginTools) => {
 
         const allCmds: cmdCollection[] = [];
-
+        console.log(tools.client.plugins)
         tools.client.plugins.forEach(p => {
+
+            log(`registered ${p.name}`, 4, "universalHelp", true)
 
             allCmds.push({
 

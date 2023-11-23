@@ -28,15 +28,13 @@ const run = async (rl: Interface, account: Account) => {
             log(`found plugin ${a.name} (${a.version})`, 4, "shell", true);
             if(typeof a.cmdLoader == "function") a.cmds = await a.cmdLoader(); 
             client.plugins.set(a.name, a);
-            a?.run({
-                client, account
-            }); 
         } catch(e) {
             log("loading plugins failed:", 2, "shell", true);
             console.error(e);
             continue;
         }
     }
+    client.plugins.forEach(x => x.run({ client, account}))
     cmdLoop(rl, account);
 };
 
