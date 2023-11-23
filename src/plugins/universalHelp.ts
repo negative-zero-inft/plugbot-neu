@@ -13,15 +13,14 @@ async function textCmdHandler(allCmds: cmdCollection[], tools: PluginTools, msg:
     const args = msg.content.split(/ +/g);
     args.shift();
 
-    let currentPage = 1;
+    let currentPage = 0;
     if (args[0] && !isNaN(Number(args[0]))) {
+        if (allCmds.length <= Number(args[0])) return;
         currentPage = Number(args[0]) <= 0 ? 0 : Number(args[0]) - 1;
     }
 
     function embedConstructor(cmd: cmdCollection) {
         const e = new EmbedBuilder()
-            // turns out cmd... is undefined :sob:
-            // uhhh look
             .setColor(colorConverter(helpConf.embedColor))
             .setTitle(`${cmd?.plugin}'s commands [${cmd?.cmds.length}]`)
             .setFooter({ text: `Page ${currentPage + 1}/${allCmds.length}` });
@@ -53,21 +52,20 @@ async function textCmdHandler(allCmds: cmdCollection[], tools: PluginTools, msg:
     await msg.channel.send({ // i'm thinking of making it so that you first pick the plugin and then go through commands in that plugin
         content: "installed plugins:",
         embeds:
-            // this is how i used
-            // currentPage is 0 so it should be index at 0
             [embedConstructor(allCmds[currentPage])],
         components: [row]
-    }); // this works too
+    }); 
 
     async function interactionHandler(i: Interaction<CacheType>) {
         if (i.type == InteractionType.MessageComponent) {
             log(`user interacted with ${i.customId}`, 0, "universalHelp", true, true);
+            await i.deferReply();
             switch (i.customId) {
                 case `prev-${id}`:
-                    console.log("did this work");
-                    // if (allCmds.length <= currentPage) return;
-                    currentPage++;
-                    await i.editReply(
+                    if (currentPage == 0) return;
+                    currentPage--; // cnb ilysm <33
+                    log(`current page: ${currentPage}`, 0, "universalHelp", true)
+                    await i.message.edit(
                         {
                             content: "installed plugins:",
                             embeds:
@@ -75,11 +73,12 @@ async function textCmdHandler(allCmds: cmdCollection[], tools: PluginTools, msg:
                             components: [row]
                         }
                     );
+                    i.deleteReply();
                     break;
                 case `next-${id}`:
-                    //if (currentPage == 0) return;
-                    currentPage--;
-                    await i.editReply(
+                    if (allCmds.length <= currentPage) return;
+                    currentPage++;
+                    await i.message.edit(
                         {
                             content: "installed plugins:",
                             embeds:
@@ -87,6 +86,7 @@ async function textCmdHandler(allCmds: cmdCollection[], tools: PluginTools, msg:
                             components: [row]
                         }
                     );
+                    i.deleteReply();
                     break;
 
                 default:
@@ -110,6 +110,20 @@ module.exports = {
     cmds: [],
     cmdLoader: () => {
 
+        const cmds: PluginCommand[] = []
+        if(helpConf.textCmds){
+
+            const textCmd: PluginCommand = {
+
+                name: `${cmdConf.textCmdPrefix}help`,
+                desc: `plugbot help menu`,
+                usage: `${cmdConf.textCmdPrefix}help`,
+                version: `0.0.1`,
+                exec: () =>{}
+            }
+            cmds.push(textCmd);
+        }
+        return cmds;
     },
     run: async (tools: PluginTools) => {
 
@@ -130,10 +144,21 @@ module.exports = {
 
         tools.client.on(Events.MessageCreate, async (m) => {
 
-            if (m.content === `${cmdConf.textCmdPrefix}help`) {
-                console.log("kys", allCmds); // it was prob an incorrect plugin
+            if(m.content.slice(0, cmdConf.textCmdPrefix.length) != cmdConf.textCmdPrefix) return
+            const args: string[] = m.content.slice(1).split(" "); // good enough for this, but nothing else. to be cleaned up later
+            if (args[0] === `help`) {
                 await textCmdHandler(allCmds, tools, m);
             }
         });
     }
 };
+
+function argsSplitter(str: string) {
+    // don't split in quotes
+    const match = str.match(/(("|').*?("|')|([^"\s]|[^'\s])+)+(?=\s*|\s*$)/g);
+    if (!match) {
+        return str.split(/\s+/g);
+    } else {
+        return match;
+    }
+}
