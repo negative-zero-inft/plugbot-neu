@@ -7,7 +7,7 @@ export interface Account {
     token: string
 }
 
-export interface PlugBot extends Client{
+export interface PlugBot extends Client {
 
     plugins: Map<string, Plugin>
 }
@@ -52,7 +52,7 @@ export interface Plugin {
     cmds?: PluginCommand[]
     developers: Array<string>
     version: number
-    cmdLoader?: () => PluginCommand[]
+    cmdLoader?: () => PluginCommand[] | Promise<PluginCommand[]>
     run: (tools: PluginTools) => void
 }
 
