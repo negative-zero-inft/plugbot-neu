@@ -1,5 +1,5 @@
-import { Client, Interaction } from "discord.js"
-import { Interface } from "readline"
+import { Client, Interaction } from "discord.js";
+import { Interface } from "readline";
 
 export interface Account {
     name: string
@@ -24,7 +24,7 @@ export interface CmdTools {
     },
     cmdTools: {
         rl: Interface,
-        mem: Map<any, any>
+        mem: Map<unknown, unknown>
         cmds: Map<string, Command>
     },
     account: Account
