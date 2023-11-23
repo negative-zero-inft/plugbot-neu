@@ -54,7 +54,7 @@ async function textCmdHandler(allCmds: cmdCollection[], tools: PluginTools, msg:
         embeds:
             [embedConstructor(allCmds[currentPage])],
         components: [row]
-    }); 
+    });
 
     async function interactionHandler(i: Interaction<CacheType>) {
         if (i.type == InteractionType.MessageComponent) {
@@ -111,7 +111,7 @@ module.exports = {
     cmdLoader: () => {
 
         const cmds: PluginCommand[] = []
-        if(helpConf.textCmds){
+        if (helpConf.textCmds) {
 
             const textCmd: PluginCommand = {
 
@@ -119,7 +119,7 @@ module.exports = {
                 desc: `plugbot help menu`,
                 usage: `${cmdConf.textCmdPrefix}help`,
                 version: `0.0.1`,
-                exec: () =>{}
+                exec: () => { }
             }
             cmds.push(textCmd);
         }
@@ -146,7 +146,7 @@ module.exports = {
 
         tools.client.on(Events.MessageCreate, async (m) => {
 
-            if(m.content.slice(0, cmdConf.textCmdPrefix.length) != cmdConf.textCmdPrefix) return
+            if (m.content.slice(0, cmdConf.textCmdPrefix.length) != cmdConf.textCmdPrefix) return
             const args: string[] = m.content.slice(1).split(" "); // good enough for this, but nothing else. to be cleaned up later
             if (args[0] === `help`) {
                 await textCmdHandler(allCmds, tools, m);
