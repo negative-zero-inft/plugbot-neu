@@ -1,4 +1,4 @@
-import { Events } from "discord.js"
+import { Events, EmbedBuilder } from "discord.js"
 import { PluginCommand, PluginTools } from "../other/typing"
 import * as cmdConf from "../configs/globalCmd.json"
 
