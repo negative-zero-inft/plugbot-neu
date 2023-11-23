@@ -23,7 +23,7 @@ module.exports = {
 		"indent": [
 			"error",
 			4,
-			{ "SwitchCase": 6 }
+			{ "SwitchCase": 1 }
 		],
 		"no-unused-vars": "off",
 		"@typescript-eslint/no-unused-vars": [

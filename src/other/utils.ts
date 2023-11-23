@@ -134,9 +134,8 @@ export function log(text: string, level: LOGLEVEL, appname: string, display?: bo
     }
 }
 
-// oh :3 <3
-export function colorConverter(color: string | number): number { 
-    return Color(color).rgbNumber()
+export function colorConverter(color: string | number): number {
+    return Color(color).rgbNumber();
 }
 
 

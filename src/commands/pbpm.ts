@@ -13,13 +13,13 @@ module.exports = {
         if(!tools.input.args[1]) return log("please input what action you want to perform", 1, "pbpm", true);
         switch(tools.input.args[1].toLowerCase()){
             
-        case "add":
+            case "add":
             // adds a repo
-            break;
+                break;
 
-        case "a":
+            case "a":
             // adds a repo
-            break;
+                break;
         }
     }
 };

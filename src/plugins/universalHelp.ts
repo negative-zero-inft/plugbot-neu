@@ -1,74 +1,106 @@
-import { Events, EmbedBuilder, Message, ButtonBuilder, ButtonComponent, ActionRowBuilder, MessageActionRowComponentBuilder, MessageComponentInteraction, InteractionType } from "discord.js"
-import { CmdTools, Plugin, PluginCmdTools, PluginCommand, PluginTools } from "../other/typing"
-import * as cmdConf from "../configs/globalCmd.json"
-import * as helpConf from "../configs/universalHelp.json"
-import { colorConverter, uniqueID } from "../other/utils"
+import { Events, EmbedBuilder, Message, ButtonBuilder, ActionRowBuilder, MessageActionRowComponentBuilder, InteractionType, CacheType, Interaction, ButtonStyle } from "discord.js";
+import { PluginCommand, PluginTools } from "../other/typing";
+import * as helpConf from "../configs/universalHelp.json";
+import * as cmdConf from "../configs/globalCmd.json";
+import { colorConverter, uniqueID, log } from "../other/utils";
 
 interface cmdCollection {
     plugin: string,
     cmds: PluginCommand[]
 }
 
-async function textCmdHandler(allCmds: cmdCollection[], tools: PluginCmdTools, msg: Message<boolean>) {
-    const args = msg.content.split(/ +/g)
-    args.shift()
-    
-    let currentPage = 0;
-    if(args[0] && !isNaN(Number(args[0]))) {
-        currentPage = (Number(args[0]) - 1) == -1 ? 0 : Number(args[0]) - 1
+async function textCmdHandler(allCmds: cmdCollection[], tools: PluginTools, msg: Message<boolean>) {
+    const args = msg.content.split(/ +/g);
+    args.shift();
+
+    let currentPage = 1;
+    if (args[0] && !isNaN(Number(args[0]))) {
+        currentPage = Number(args[0]) <= 0 ? 0 : Number(args[0]) - 1;
     }
 
     function embedConstructor(cmd: cmdCollection) {
-        const e = new EmbedBuilder() 
-        .setColor(colorConverter(helpConf.embedColor))
-        .setTitle(`${cmd.plugin}'s commands [${cmd.cmds.length}]`)
-        .setFooter({text: `Page ${currentPage + 1}/${allCmds.length}`})
+        const e = new EmbedBuilder()
+            // turns out cmd... is undefined :sob:
+            // uhhh look
+            .setColor(colorConverter(helpConf.embedColor))
+            .setTitle(`${cmd?.plugin}'s commands [${cmd?.cmds.length}]`)
+            .setFooter({ text: `Page ${currentPage + 1}/${allCmds.length}` });
         // fields limit
-        for(const plugcommands of cmd.cmds.slice(0, 24)) {
-            e.addFields([{
+        for (const plugcommands of cmd.cmds.slice(0, 24)) {
+            e.addFields({
                 name: `${plugcommands.name} (v${plugcommands.version})`, value: plugcommands.desc
-            }])
+            });
         }
 
-        return e.toJSON()
+        return e.toJSON();
     }
-    const id = uniqueID(6)
-    
+    const id = uniqueID(6); // co kurwa
+    console.log(id); // wy tu to werk
+
     const nextbtns = new ButtonBuilder()
-    .setCustomId(`next-${id}`)
-    .setEmoji("➡️")
-    
+        .setCustomId(`next-${id}`)
+        .setEmoji("➡️")
+        .setStyle(ButtonStyle.Primary);
+
     const prevbtns = new ButtonBuilder()
-    .setCustomId(`prev-${id}`)
-    .setEmoji("⬅️")
+        .setCustomId(`prev-${id}`)
+        .setEmoji("⬅️")
+        .setStyle(ButtonStyle.Primary);
 
     const row = new ActionRowBuilder<MessageActionRowComponentBuilder>()
-        .addComponents(nextbtns, prevbtns)
+        .addComponents(prevbtns, nextbtns);
 
-    const messageToEdit = await msg.channel.send({ // i'm thinking of making it so that you first pick the plugin and then go through commands in that plugin
+    await msg.channel.send({ // i'm thinking of making it so that you first pick the plugin and then go through commands in that plugin
         content: "installed plugins:",
         embeds:
-        [embedConstructor(allCmds[currentPage])],
+            // this is how i used
+            // currentPage is 0 so it should be index at 0
+            [embedConstructor(allCmds[currentPage])],
         components: [row]
-    }) 
+    }); // this works too
 
-    tools.client.on(Events.InteractionCreate, i => {
-        if(i.type == InteractionType.MessageComponent) {
-            let didItPress: boolean;
-            switch(i.id) {
+    async function interactionHandler(i: Interaction<CacheType>) {
+        if (i.type == InteractionType.MessageComponent) {
+            log(`user interacted with ${i.customId}`, 0, "universalHelp", true, true);
+            switch (i.customId) {
                 case `prev-${id}`:
-                    if(allCmds.length <= currentPage) return;
-                    currentPage++
-                    didItPress = true;
+                    console.log("did this work");
+                    // if (allCmds.length <= currentPage) return;
+                    currentPage++;
+                    await i.editReply(
+                        {
+                            content: "installed plugins:",
+                            embeds:
+                                [embedConstructor(allCmds[currentPage])],
+                            components: [row]
+                        }
+                    );
+                    break;
                 case `next-${id}`:
-                    if(currentPage == 0) return;
-                    currentPage--
-                    didItPress = true;
-                default: 
-                    didItPress = false
+                    //if (currentPage == 0) return;
+                    currentPage--;
+                    await i.editReply(
+                        {
+                            content: "installed plugins:",
+                            embeds:
+                                [embedConstructor(allCmds[currentPage])],
+                            components: [row]
+                        }
+                    );
+                    break;
+
+                default:
+                    log("i have no fucking clue what happened", 2, "universalHelp", true);
             }
         }
-    })
+    }
+
+    tools.client.addListener(Events.InteractionCreate, interactionHandler);
+
+    // self destruct after 30 seconds
+    setTimeout(() => {
+        tools.client.removeListener(Events.InteractionCreate, interactionHandler);
+    }, 30e3);
 }
 
 module.exports = {
@@ -76,33 +108,32 @@ module.exports = {
     developers: ["nrd", "catnowblue"],
     version: "0.0.1",
     cmds: [],
-    cmdLoader: () =>{
-        
+    cmdLoader: () => {
+
     },
-    run: (tools: PluginTools) =>{
+    run: async (tools: PluginTools) => {
 
         const allCmds: cmdCollection[] = [];
 
-        tools.client.plugins.forEach(p =>{
+        tools.client.plugins.forEach(p => {
 
             allCmds.push({
 
                 plugin: p.name,
                 cmds: []
-            })
-            p.cmds?.forEach(cmd =>{
-
-                allCmds.find((x) => x.plugin === p.name)?.cmds.push(cmd)
             });
-        }); 
+            p.cmds?.forEach(cmd => {
 
-        tools.client.on(Events.MessageCreate, (m) =>{
+                allCmds.find((x) => x.plugin === p.name)?.cmds.push(cmd);
+            });
+        });
 
-            const args = m.content.split(" ")
-            // if(m.content === `${cmdConf.textCmdPrefix}help`){
-                
-            //     if(!args[1])
-            // };
-        }); 
+        tools.client.on(Events.MessageCreate, async (m) => {
+
+            if (m.content === `${cmdConf.textCmdPrefix}help`) {
+                console.log("kys", allCmds); // it was prob an incorrect plugin
+                await textCmdHandler(allCmds, tools, m);
+            }
+        });
     }
 };

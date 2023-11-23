@@ -1,4 +1,4 @@
-import { Events } from "discord.js";
+// import { Events } from "discord.js";
 import { PluginTools, PluginCommand } from "../other/typing";
 import { log } from "../other/utils";
 import { readdirSync } from "fs";
