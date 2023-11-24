@@ -12,12 +12,27 @@ export = {
     run: (tools: CmdTools) => {
 
         const channelid = tools.input.args[1];
-        if (!channelid || !isValidSnowflake(channelid)) return log("please input the channel id", 1, "sendmsg", true);
-        if (!tools.input.args[2]) return log("please input the message content", 1, "sendmsg", true);
+        if (!channelid || !isValidSnowflake(channelid)) return log("please input the channel id", "sendmsg", {
+            display: true,
+            saveFile: false,
+            username: tools.account.name,
+            level: 1
+        })
+        if (!tools.input.args[2]) return log("please input the message content", "sendmsg", {
+            display: true,
+            saveFile: false,
+            username: tools.account.name,
+            level: 1
+        })
         const channel = tools.client.channels.cache.get(channelid) as TextChannel;
         const msg = tools.input.args.splice(2).join(" ");
         channel.send(msg);
-        log(`sent ${msg}`, 4, "sendmsg", true, true);
+        log(`sent ${msg}`, "sendmsg", {
+            display: true,
+            saveFile: true,
+            username: tools.account.name,
+            level: 4
+        })
         return;
     }
 }

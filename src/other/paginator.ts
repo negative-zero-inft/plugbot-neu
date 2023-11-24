@@ -38,17 +38,29 @@ export async function paginator(msg: Message, client: PlugBot, embeds: APIEmbed[
                 case `prev-${id}`:
                     if (currentPage == 0) break;
                     currentPage--;
-                    log(`${i.user.username} has changed to page ${currentPage}`, 0, "paginator", true);
-                    msgContent.embeds = [embeds[currentPage]]; // the fuck
+                    log(`${i.user.username} has changed to page ${currentPage}`, "paginator", {
+                        display: true,
+                        saveFile: false,
+                        level: 0
+                    })
+                    msgContent.embeds = [embeds[currentPage]];
                     break;
                 case `next-${id}`:
                     if (embeds.length <= currentPage + 1) break;
                     currentPage++;
-                    log(`${i.user.username} has changed to page ${currentPage}`, 0, "paginator", true);
+                    log(`${i.user.username} has changed to page ${currentPage}`, "paginator", {
+                        display: true,
+                        saveFile: false,
+                        level: 0
+                    })
                     msgContent.embeds = [embeds[currentPage]];
                     break;
                 case `pageview-${id}`:
-                    log(`${i.user.username} is opening page preview. ${embeds.length} pages.`, 0, "paginator", true);
+                    log(`${i.user.username} is opening page preview. ${embeds.length} pages.`, "paginator", {
+                        display: true,
+                        saveFile: false,
+                        level: 0
+                    })
                     await i.reply({
                         embeds: [
                             new EmbedBuilder()

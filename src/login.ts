@@ -41,9 +41,17 @@ const run = async () => {
         try {
             const a: Account = await require(`../accounts/${u}`);
             accounts.set(a.name, a);
-            log(`found account ${a.name}`, 4, "shell", true);
+            log(`found account ${a.name}`, "shell", {
+                display: true,
+                saveFile: false,
+                level: 4
+            })
         } catch (e) {
-            log("loading accounts failed:", 2, "shell", true, true);
+            log("loading accounts failed:", "shell", {
+                display: true,
+                saveFile: false,
+                level: 2
+            })
             console.error(e);
             continue;
         }
@@ -52,7 +60,11 @@ const run = async () => {
     rl.question(styleSetup(cfg.login.q.name), async (name) => {
 
         const acnt = accounts.get(name);
-        if (!acnt) if (name.toLowerCase() === cfg.login.newAccountCmd) { newUserProc(); } else { log(cfg.login.accountMissingMsg, 1, "shell", true); run(); } else {
+        if (!acnt) if (name.toLowerCase() === cfg.login.newAccountCmd) { newUserProc(); } else { log(cfg.login.accountMissingMsg, "shell", {
+            display: true,
+            saveFile: false,
+            level: 1
+        }); run(); } else {
 
             isInputVisible = false;
             process.stdout.write(styleSetup(cfg.login.q.password));
@@ -71,8 +83,16 @@ const newUserProc = async () => {
 
     rl.question(cfg.newAcc.q.name, (name) => {
 
-        if (accounts.get(name)) { log(cfg.newAcc.exists, 1, "shell", true); return run(); }
-        if (name.toLowerCase() === cfg.login.newAccountCmd) { log(cfg.newAcc.exists, 1, "shell", true); return run(); }
+        if (accounts.get(name)) { log(cfg.newAcc.exists, "shell", {
+            display: true,
+            saveFile: false,
+            level: 1
+        }); return run(); }
+        if (name.toLowerCase() === cfg.login.newAccountCmd) { log(cfg.newAcc.exists, "shell", {
+            display: true,
+            saveFile: false,
+            level: 1
+        }); return run(); }
 
         rl.question(cfg.newAcc.q.pswd, (pswd) => {
 
@@ -98,7 +118,11 @@ const newUserProc = async () => {
                     if (answer.toLowerCase() === "y" || answer.toLowerCase() === "yes") {
 
                         appendFileSync(`./accounts/${name.replace("/", "_")}.json`, JSON.stringify(newUser));
-                        log(`finished saving user ${name}`, 4, "shell", true, true);
+                        log(`finished saving user ${name}`, "shell", {
+                            display: true,
+                            saveFile: true,
+                            level: 4
+                        })
                     }
                     return run();
                 });
@@ -107,8 +131,13 @@ const newUserProc = async () => {
     });
 };
 rl.on("close", () => {
-    log("readline was closed", 1, "shell", true);
     exit();
 });
-rl.on("pause", () => { log("readline was paused", 1, "shell, true"); });
+rl.on("pause", () => { 
+    log("readline was paused", "shell", {
+        display: true,
+        saveFile: false,
+        level: 1
+    }) 
+});
 run();

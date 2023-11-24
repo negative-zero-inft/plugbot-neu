@@ -24,9 +24,15 @@ export function styleSetup(toSetup: string, username?: string) {
     return ss(toSetup, username);
 }
 
-export function log(text: string, level: LOGLEVEL, appName: string, display?: boolean, saveFile?: boolean, username?: string) {
+export function log(text: string, appName: string, optional?: {
 
-    lg(text, level, appName, display, saveFile, username);
+    display?: boolean,
+    saveFile?: boolean,
+    username?: string,
+    level?: LOGLEVEL
+}) {
+
+    lg(text, appName, optional);
 }
 
 export function colorConverter(color: string | number): number {

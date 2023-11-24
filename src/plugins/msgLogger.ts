@@ -9,10 +9,20 @@ export = {
     cmds: [],
     run: (tools: PluginTools) => {
 
-        log("ready", 4, "msgLogger", true);
+        log("ready", "msgLogger", {
+
+            display: true,
+            saveFile: true,
+            username: tools.account.name
+        });
         tools.client.on(Events.MessageCreate, (msg) => {
 
-            log(`${msg.author.username} said ${msg.content}`, 0, "msgLogger", true, true);
+            log(`${msg.author.username} said ${msg.content}`, "msgLogger", {
+
+                display: true,
+                saveFile: true,
+                username: tools.account.name
+            });
         });
     }
 }

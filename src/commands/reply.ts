@@ -13,15 +13,35 @@ export = {
         const channelId = tools.input.args[2];
         const messageId = tools.input.args[1];
 
-        if (!messageId || !isValidSnowflake(messageId)) return log("please input the message id that you're replying to", 1, "sendmsg", true);
-        if (!channelId || !isValidSnowflake(channelId)) return log("please input the channel id that you're replying in", 1, "sendmsg", true);
-        if (!tools.input.args[3]) return log("please input the message content", 1, "sendmsg", true);
+        if (!messageId || !isValidSnowflake(messageId)) return log("please input the message id that you're replying to", "reply", {
+            display: true,
+            saveFile: false,
+            username: tools.account.name,
+            level: 1
+        })
+        if (!channelId || !isValidSnowflake(channelId)) return log("please input the channel id that you're replying in", "reply", {
+            display: true,
+            saveFile: false,
+            username: tools.account.name,
+            level: 1
+        })
+        if (!tools.input.args[3]) return log("please input the message content", "reply", {
+            display: true,
+            saveFile: false,
+            username: tools.account.name,
+            level: 1
+        })
 
         const msg = tools.input.args.splice(3).join(" ");
         const channel = tools.client.channels.cache.get(channelId) as TextChannel;
         channel.messages.fetch(messageId).then(m => {
             m.reply(msg);
-            log(`sent ${msg} in reply to ${m.content}`, 4, "reply", true, true);
+            log(`sent ${msg} in reply to ${m.content}`, "reply", {
+                display: true,
+                saveFile: true,
+                username: tools.account.name,
+                level: 4
+            })
         });
     }
 }

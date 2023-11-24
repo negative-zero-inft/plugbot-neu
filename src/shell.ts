@@ -21,20 +21,40 @@ export default async (rl: Interface, account: Account) => {
 // runs when the client finished logging in
 const run = async (rl: Interface, account: Account) => {
 
-    log(cfg.bot.ready, 4, "shell", true);
+    log(cfg.bot.ready, "shell", {
+        display: true,
+        saveFile: false,
+        username: account.name,
+        level: 4
+    })
     for (const u of pgins) {
         try {
             const a: Plugin = await require(`./plugins/${u}`);
             if (!a.name || !a.run || !a.version || !a.developers) {
 
-                log(`found found an invalid plugin (${u})`, 2, "shell", true);
+                log(`found found an invalid plugin (${u})`, "shell", {
+                    display: true,
+                    saveFile: false,
+                    username: account.name,
+                    level: 1
+                });
                 continue;
             }
-            log(`found plugin ${a.name} (${a.version})`, 4, "shell", true);
-            if (typeof a.cmdLoader == "function") a.cmds = await a.cmdLoader();
+            log(`found plugin ${a.name} (${a.version})`, "shell", {
+                display: true,
+                saveFile: false,
+                username: account.name,
+                level: 4
+            })
+            if (typeof a.cmdLoader == "function") a.cmds = await a.cmdLoader({ client, account });
             client.plugins.set(a.name, a);
         } catch (e) {
-            log("loading plugins failed:", 2, "shell", true);
+            log("loading plugins failed:", "shell", {
+                display: true,
+                saveFile: false,
+                username: account.name,
+                level: 2
+            })
             console.error(e);
             continue;
         }
@@ -51,19 +71,34 @@ const cmdLoop = async (rl: Interface, account: Account) => {
             const a: Command = await require(`./commands/${u}`);
             if (!a.name || !a.desc || !a.run || !a.usage || !a.version || !a.developers) {
 
-                log(`found found an invalid command (${u})`, 2, "shell", true);
+                log(`found found an invalid command (${u})`, "shell", {
+                    display: true,
+                    saveFile: false,
+                    username: account.name,
+                    level: 1
+                })
                 continue;
             }
             commands.set(a.name, a);
         } catch (e) {
-            log("loading commands failed:", 2, "shell", true);
+            log("loading commands failed:", "shell", {
+                display: true,
+                saveFile: false,
+                username: account.name,
+                level: 2
+            })
             console.error(e);
             continue;
         }
     }
     rl.question(styleSetup(cfg.shell.prompt, account.name), (line) => {
 
-        log(`entered ${line} into command line`, 0, "shell", false, true);
+        log(`entered ${line} into command line`, "shell", {
+            display: false,
+            saveFile: true,
+            username: account.name,
+            level: 0
+        })
         const primArgs = line.split(" ");
         if (commands.has(primArgs[0])) {
 
@@ -87,10 +122,20 @@ const cmdLoop = async (rl: Interface, account: Account) => {
                 });
             } catch (err) {
 
-                log("the program has crashed:", 2, primArgs[0], true);
+                log("the program has crashed:", primArgs[0], {
+                    display: true,
+                    saveFile: false,
+                    username: account.name,
+                    level: 2
+                })
                 console.error(err);
             }
-        } else log(`command ${primArgs[0]} does not exist`, 1, "shell", true);
+        } else log(`command ${primArgs[0]} does not exist`, "shell", {
+            display: true,
+            saveFile: false,
+            username: account.name,
+            level: 1
+        })
         return cmdLoop(rl, account);
     });
 };

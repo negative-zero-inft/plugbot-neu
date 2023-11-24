@@ -7,9 +7,13 @@ module.exports = {
     version: "1.0.1",
     desc: "shut down plugbot",
     usage: "exit",
-    run: (_tools: CmdTools) => {
+    run: (tools: CmdTools) => {
 
-        log("closing plugbot...", 0, "exit");
+        log("closing plugbot...", "exit", {
+            display: true,
+            saveFile: false,
+            username: tools.account.name
+        })
         process.exit(0);
     }
 };

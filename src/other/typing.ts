@@ -53,7 +53,7 @@ export interface Plugin {
     cmds?: PluginCommand[]
     developers: Array<string>
     version: number
-    cmdLoader?: () => PluginCommand[] | Promise<PluginCommand[]>
+    cmdLoader?: (tools: PluginTools) => PluginCommand[] | Promise<PluginCommand[]>
     run: (tools: PluginTools) => void | Promise<void>
 }
 
@@ -64,4 +64,15 @@ export interface Command {
     usage: string
     desc: string
     run: (tools: CmdTools) => void | Promise<void>
+}
+
+export interface pbpmRepo {
+
+    name: string
+    maintainers: Array<string>
+    packages: Array<{
+
+        name: string
+        link: string
+    }>
 }

@@ -15,7 +15,12 @@ async function textCmdHandler(allCmds: cmdCollection[], tools: PluginTools, msg:
     for (const cmds of allCmds) {
         if (cmds.cmds.length === 0) {
 
-            log(`plugin ${cmds.plugin} has no commands, skipping.`, 1, "universalHelp", true);
+            log(`plugin ${cmds.plugin} has no commands, skipping.`, "universalHelp", {
+                display: true,
+                saveFile: false,
+                username: tools.account.name,
+                level: 1
+            })
             continue;
         }
         const e = new EmbedBuilder()
@@ -37,14 +42,14 @@ module.exports = {
     developers: ["nrd", "catnowblue"],
     version: "0.0.2",
     cmds: [],
-    cmdLoader: () => {
+    cmdLoader: (_tools: PluginTools) => {
 
         const cmds: PluginCommand[] = [];
         if (helpConf.textCmds) {
 
             const textCmd: PluginCommand = {
 
-                name: `${cmdConf.textCmdPrefix}help`,
+                name: `help`,
                 desc: "plugbot help menu",
                 usage: `${cmdConf.textCmdPrefix}help`,
                 version: "0.0.1",
@@ -59,7 +64,11 @@ module.exports = {
         const allCmds: cmdCollection[] = [];
         tools.client.plugins.forEach(p => {
 
-            log(`registered ${p.name}`, 4, "universalHelp", true);
+            log(`registered ${p.name}`, "universalHelp", {
+
+                display: true,
+                username: tools.account.name
+            });
 
             allCmds.push({
                 plugin: p.name,
