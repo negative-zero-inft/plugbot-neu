@@ -25,6 +25,11 @@ const run = async (rl: Interface, account: Account) => {
     for (const u of pgins) {
         try {
             const a: Plugin = await require(`./plugins/${u}`);
+            if (!a.name || !a.run || !a.version || !a.developers) {
+
+                log(`found found an invalid plugin (${u})`, 2, "shell", true);
+                continue;
+            }
             log(`found plugin ${a.name} (${a.version})`, 4, "shell", true);
             if (typeof a.cmdLoader == "function") a.cmds = await a.cmdLoader();
             client.plugins.set(a.name, a);
@@ -34,17 +39,21 @@ const run = async (rl: Interface, account: Account) => {
             continue;
         }
     }
-    client.plugins.forEach(x => x.run({ client, account }))
+    client.plugins.forEach(x => x.run({ client, account }));
     cmdLoop(rl, account);
 };
 
 // runs every time you need to type a command
-
 const cmdLoop = async (rl: Interface, account: Account) => {
 
     for (const u of cmds) {
         try {
             const a: Command = await require(`./commands/${u}`);
+            if (!a.name || !a.desc || !a.run || !a.usage || !a.version || !a.developers) {
+
+                log(`found found an invalid command (${u})`, 2, "shell", true);
+                continue;
+            }
             commands.set(a.name, a);
         } catch (e) {
             log("loading commands failed:", 2, "shell", true);
