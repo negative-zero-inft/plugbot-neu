@@ -69,6 +69,7 @@ export interface Command {
 export interface pbpmRepo {
 
     name: string
+    id: string
     maintainers: Array<string>
     repoLink: string
     packages: Array<{

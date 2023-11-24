@@ -8,6 +8,7 @@
     "color": "^4.2.3",
     "discord-api-types": "^0.37.63",
     "discord.js": "^14.14.1",
+    "simple-git": "^3.21.0",
     "stream": "^0.0.2",
     "ts-node": "^10.9.1"
   },
