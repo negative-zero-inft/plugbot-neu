@@ -7,7 +7,7 @@ module.exports = {
     developers: ["nrd"],
     version: "0.0.1",
     desc: "the plugbot package manager",
-    usage: "pbpm [add/install] [package name]",
+    usage: "pbpm [add/install/view/refresh] [package name]",
     run: (tools: CmdTools) =>{
     
         if(!tools.input.args[1]) return log("please input what action to perform", "pbpm", {
@@ -35,6 +35,22 @@ module.exports = {
                 // install script
                 install(tools);
                 break;
+
+            case "view":
+                // view repo
+                break
+
+            case "v":
+                // view repo
+                break
+
+            case "refresh":
+                // refresh repos
+                break
+
+            case "r":
+                // refresh repos
+                break
 
             default:
                 log("the only options are add (a) and install (i)", "pbpm", {

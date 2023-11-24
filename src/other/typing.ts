@@ -70,6 +70,7 @@ export interface pbpmRepo {
 
     name: string
     maintainers: Array<string>
+    repoLink: string
     packages: Array<{
 
         name: string
