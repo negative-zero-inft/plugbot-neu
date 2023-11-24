@@ -14,6 +14,7 @@ enum LOGLEVEL {
 
 export default (text: string, appname: string, optional?: {
 
+    // cnb please make this slimmer :3
     display?: boolean,
     saveFile?: boolean,
     username?: string,
