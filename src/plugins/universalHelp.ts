@@ -19,16 +19,20 @@ async function textCmdHandler(allCmds: cmdCollection[], tools: PluginTools, msg:
         currentPage = Number(args[0]) <= 0 ? 0 : Number(args[0]) - 1;
     }
 
-    function embedConstructor(cmd: cmdCollection) {
+    function embedConstructor(cmd: cmdCollection | undefined) {
         const e = new EmbedBuilder()
             .setColor(colorConverter(helpConf.embedColor))
             .setTitle(`${cmd?.plugin}'s commands [${cmd?.cmds.length}]`)
             .setFooter({ text: `Page ${currentPage + 1}/${allCmds.length}` });
         // fields limit
-        for (const plugcommands of cmd.cmds.slice(0, 24)) {
-            e.addFields({
-                name: `${plugcommands.name} (v${plugcommands.version})`, value: plugcommands.desc
-            });
+        if (typeof cmd != "undefined") {
+            for (const plugcommands of cmd.cmds.slice(0, 24)) {
+                e.addFields({
+                    name: `${plugcommands.name} (v${plugcommands.version})`, value: plugcommands.desc
+                });
+            }
+        } else {
+            e.setDescription("No commands found.");
         }
 
         return e.toJSON();
@@ -57,41 +61,28 @@ async function textCmdHandler(allCmds: cmdCollection[], tools: PluginTools, msg:
     });
 
     async function interactionHandler(i: Interaction<CacheType>) {
-        if (i.type == InteractionType.MessageComponent) {
+        if (i.type == InteractionType.MessageComponent && i.customId.endsWith(id)) {
             log(`user interacted with ${i.customId}`, 0, "universalHelp", true, true);
-            await i.deferReply();
             switch (i.customId) {
                 case `prev-${id}`:
-                    if (currentPage == 0) return;
-                    currentPage--; // cnb ilysm <33
-                    log(`current page: ${currentPage}`, 0, "universalHelp", true)
-                    await i.message.edit(
-                        {
-                            content: "installed plugins:",
-                            embeds:
-                                [embedConstructor(allCmds[currentPage])],
-                            components: [row]
-                        }
-                    );
-                    i.deleteReply();
+                    if (currentPage == 0) break;
+                    currentPage--;
+                    log(`current page: ${currentPage}`, 0, "universalHelp", true);
                     break;
                 case `next-${id}`:
-                    if (allCmds.length <= currentPage) return;
+                    if (allCmds.length <= currentPage + 1) break;
                     currentPage++;
-                    await i.message.edit(
-                        {
-                            content: "installed plugins:",
-                            embeds:
-                                [embedConstructor(allCmds[currentPage])],
-                            components: [row]
-                        }
-                    );
-                    i.deleteReply();
                     break;
-
                 default:
                     log("i have no fucking clue what happened", 2, "universalHelp", true);
+                    break;
             }
+            await i.update({
+                content: "installed plugins:",
+                embeds:
+                    [embedConstructor(allCmds[currentPage])],
+                components: [row]
+            });
         }
     }
 
@@ -110,17 +101,17 @@ module.exports = {
     cmds: [],
     cmdLoader: () => {
 
-        const cmds: PluginCommand[] = []
+        const cmds: PluginCommand[] = [];
         if (helpConf.textCmds) {
 
             const textCmd: PluginCommand = {
 
                 name: `${cmdConf.textCmdPrefix}help`,
-                desc: `plugbot help menu`,
+                desc: "plugbot help menu",
                 usage: `${cmdConf.textCmdPrefix}help`,
-                version: `0.0.1`,
+                version: "0.0.1",
                 exec: () => { }
-            }
+            };
             cmds.push(textCmd);
         }
         return cmds;
@@ -128,10 +119,10 @@ module.exports = {
     run: async (tools: PluginTools) => {
 
         const allCmds: cmdCollection[] = [];
-        console.log(tools.client.plugins)
+        console.log(tools.client.plugins);
         tools.client.plugins.forEach(p => {
 
-            log(`registered ${p.name}`, 4, "universalHelp", true)
+            log(`registered ${p.name}`, 4, "universalHelp", true);
 
             allCmds.push({
 
@@ -146,9 +137,9 @@ module.exports = {
 
         tools.client.on(Events.MessageCreate, async (m) => {
 
-            if (m.content.slice(0, cmdConf.textCmdPrefix.length) != cmdConf.textCmdPrefix) return
-            const args: string[] = m.content.slice(1).split(" "); // good enough for this, but nothing else. to be cleaned up later
-            if (args[0] === `help`) {
+            if (m.content.slice(0, cmdConf.textCmdPrefix.length) != cmdConf.textCmdPrefix) return;
+            const args: string[] = argsSplitter(m.content.slice(cmdConf.textCmdPrefix.length)); // good enough for this, but nothing else. to be cleaned up later
+            if (args[0] === "help") {
                 await textCmdHandler(allCmds, tools, m);
             }
         });
