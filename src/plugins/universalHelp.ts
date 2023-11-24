@@ -38,7 +38,6 @@ async function textCmdHandler(allCmds: cmdCollection[], tools: PluginTools, msg:
         return e.toJSON();
     }
     const id = uniqueID(6); // co kurwa
-    console.log(id); // wy tu to werk
 
     const nextbtns = new ButtonBuilder()
         .setCustomId(`next-${id}`)
@@ -62,19 +61,16 @@ async function textCmdHandler(allCmds: cmdCollection[], tools: PluginTools, msg:
 
     async function interactionHandler(i: Interaction<CacheType>) {
         if (i.type == InteractionType.MessageComponent && i.customId.endsWith(id)) {
-            log(`user interacted with ${i.customId}`, 0, "universalHelp", true, true);
             switch (i.customId) {
                 case `prev-${id}`:
                     if (currentPage == 0) break;
                     currentPage--;
-                    log(`current page: ${currentPage}`, 0, "universalHelp", true);
                     break;
                 case `next-${id}`:
                     if (allCmds.length <= currentPage + 1) break;
                     currentPage++;
                     break;
                 default:
-                    log("i have no fucking clue what happened", 2, "universalHelp", true);
                     break;
             }
             await i.update({
@@ -119,7 +115,6 @@ module.exports = {
     run: async (tools: PluginTools) => {
 
         const allCmds: cmdCollection[] = [];
-        console.log(tools.client.plugins);
         tools.client.plugins.forEach(p => {
 
             log(`registered ${p.name}`, 4, "universalHelp", true);
