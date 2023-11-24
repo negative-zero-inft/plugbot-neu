@@ -44,6 +44,7 @@ export interface PluginCommand {
     desc: string
     usage: string
     version: string
+    isSlashCmd?: boolean
     exec: (tools: PluginCmdTools) => void | Promise<void>
 }
 
