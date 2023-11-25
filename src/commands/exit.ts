@@ -13,7 +13,7 @@ module.exports = {
             display: true,
             saveFile: false,
             username: tools.account.name
-        })
+        });
         process.exit(0);
     }
 };

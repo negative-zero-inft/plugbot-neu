@@ -37,12 +37,12 @@ const accounts: Map<string, Account> = new Map<string, Account>();
 const run = async () => {
 
     // temp redoing
-    rmdirSync("./temp", { recursive: true })
+    rmdirSync("./temp", { recursive: true });
     mkdir("./temp", {}, (err) =>{
 
-        err
-        "shut up"
-    })
+        err;
+        "shut up";
+    });
     const acnts = readdirSync("./userSpace/accounts").filter(file => file.endsWith(".json"));
     for (const u of acnts) {
         try {
@@ -52,13 +52,13 @@ const run = async () => {
                 display: true,
                 saveFile: false,
                 level: 4
-            })
+            });
         } catch (e) {
             log("loading accounts failed:", "shell", {
                 display: true,
                 saveFile: false,
                 level: 2
-            })
+            });
             console.error(e);
             continue;
         }
@@ -129,7 +129,7 @@ const newUserProc = async () => {
                             display: true,
                             saveFile: true,
                             level: 4
-                        })
+                        });
                     }
                     return run();
                 });
@@ -145,6 +145,6 @@ rl.on("pause", () => {
         display: true,
         saveFile: false,
         level: 1
-    }) 
+    }); 
 });
 run();

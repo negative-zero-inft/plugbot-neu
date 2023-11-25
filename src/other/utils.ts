@@ -1,8 +1,9 @@
-/* eslint-disable indent */
 // this file won't get bloated at all
 import Color from "color";
 import ss from "./utils/styleSetup";
 import lg from "./utils/log";
+import { readFileSync } from "fs";
+import { readFile } from "fs/promises";
 
 enum LOGLEVEL {
     SAY_GEX = -1,
@@ -53,4 +54,14 @@ export function uniqueID(length: number) {
         counter += 1;
     }
     return result;
+}
+
+
+// Better than using require() to load JSON stuff
+export function JSONrequire<T>(path: string) {
+    return JSON.parse(readFileSync(path).toString()) as T;
+}
+
+export async function asyncJSONrequire<T>(path: string) {
+    return JSON.parse((await readFile(path)).toString()) as T;
 }

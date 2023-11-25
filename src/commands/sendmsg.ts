@@ -17,13 +17,13 @@ export = {
             saveFile: false,
             username: tools.account.name,
             level: 1
-        })
+        });
         if (!tools.input.args[2]) return log("please input the message content", "sendmsg", {
             display: true,
             saveFile: false,
             username: tools.account.name,
             level: 1
-        })
+        });
         const channel = tools.client.channels.cache.get(channelid) as TextChannel;
         const msg = tools.input.args.splice(2).join(" ");
         channel.send(msg);
@@ -32,7 +32,7 @@ export = {
             saveFile: true,
             username: tools.account.name,
             level: 4
-        })
+        });
         return;
     }
 }

@@ -67,4 +67,4 @@ export default (tosetup: string, username?: string) => {
         .replace(/'HN'/g, hostname);
 
     return finishedproduct;
-}
+};

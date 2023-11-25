@@ -42,7 +42,7 @@ export async function paginator(msg: Message, client: PlugBot, embeds: APIEmbed[
                         display: true,
                         saveFile: false,
                         level: 0
-                    })
+                    });
                     msgContent.embeds = [embeds[currentPage]];
                     break;
                 case `next-${id}`:
@@ -52,7 +52,7 @@ export async function paginator(msg: Message, client: PlugBot, embeds: APIEmbed[
                         display: true,
                         saveFile: false,
                         level: 0
-                    })
+                    });
                     msgContent.embeds = [embeds[currentPage]];
                     break;
                 case `pageview-${id}`:
@@ -60,7 +60,7 @@ export async function paginator(msg: Message, client: PlugBot, embeds: APIEmbed[
                         display: true,
                         saveFile: false,
                         level: 0
-                    })
+                    });
                     await i.reply({
                         embeds: [
                             new EmbedBuilder()

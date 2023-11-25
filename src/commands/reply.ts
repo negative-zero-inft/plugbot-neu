@@ -18,19 +18,19 @@ export = {
             saveFile: false,
             username: tools.account.name,
             level: 1
-        })
+        });
         if (!channelId || !isValidSnowflake(channelId)) return log("please input the channel id that you're replying in", "reply", {
             display: true,
             saveFile: false,
             username: tools.account.name,
             level: 1
-        })
+        });
         if (!tools.input.args[3]) return log("please input the message content", "reply", {
             display: true,
             saveFile: false,
             username: tools.account.name,
             level: 1
-        })
+        });
 
         const msg = tools.input.args.splice(3).join(" ");
         const channel = tools.client.channels.cache.get(channelId) as TextChannel;
@@ -41,7 +41,7 @@ export = {
                 saveFile: true,
                 username: tools.account.name,
                 level: 4
-            })
+            });
         });
     }
 }

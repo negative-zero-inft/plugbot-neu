@@ -26,7 +26,7 @@ const run = async (rl: Interface, account: Account) => {
         saveFile: false,
         username: account.name,
         level: 4
-    })
+    });
     for (const u of pgins) {
         try {
             const a: Plugin = await require(`./plugins/${u}`);
@@ -45,7 +45,7 @@ const run = async (rl: Interface, account: Account) => {
                 saveFile: false,
                 username: account.name,
                 level: 4
-            })
+            });
             if (typeof a.cmdLoader == "function") a.cmds = await a.cmdLoader({ client, account });
             client.plugins.set(a.name, a);
         } catch (e) {
@@ -54,7 +54,7 @@ const run = async (rl: Interface, account: Account) => {
                 saveFile: false,
                 username: account.name,
                 level: 2
-            })
+            });
             console.error(e);
             continue;
         }
@@ -76,7 +76,7 @@ const cmdLoop = async (rl: Interface, account: Account) => {
                     saveFile: false,
                     username: account.name,
                     level: 1
-                })
+                });
                 continue;
             }
             commands.set(a.name, a);
@@ -86,7 +86,7 @@ const cmdLoop = async (rl: Interface, account: Account) => {
                 saveFile: false,
                 username: account.name,
                 level: 2
-            })
+            });
             console.error(e);
             continue;
         }
@@ -98,7 +98,7 @@ const cmdLoop = async (rl: Interface, account: Account) => {
             saveFile: true,
             username: account.name,
             level: 0
-        })
+        });
         const primArgs = line.split(" ");
         if (commands.has(primArgs[0])) {
 
@@ -127,7 +127,7 @@ const cmdLoop = async (rl: Interface, account: Account) => {
                     saveFile: false,
                     username: account.name,
                     level: 2
-                })
+                });
                 console.error(err);
             }
         } else log(`command ${primArgs[0]} does not exist`, "shell", {
@@ -135,7 +135,7 @@ const cmdLoop = async (rl: Interface, account: Account) => {
             saveFile: false,
             username: account.name,
             level: 1
-        })
+        });
         return cmdLoop(rl, account);
     });
 };

@@ -20,7 +20,7 @@ async function textCmdHandler(allCmds: cmdCollection[], tools: PluginTools, msg:
                 saveFile: false,
                 username: tools.account.name,
                 level: 1
-            })
+            });
             continue;
         }
         const e = new EmbedBuilder()
@@ -49,7 +49,7 @@ module.exports = {
 
             const textCmd: PluginCommand = {
 
-                name: `help`,
+                name: "help",
                 desc: "plugbot help menu",
                 usage: `${cmdConf.textCmdPrefix}help`,
                 version: "0.0.1",

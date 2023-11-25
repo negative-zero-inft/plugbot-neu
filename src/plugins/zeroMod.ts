@@ -20,7 +20,7 @@ export = {
                     saveFile: false,
                     username: tools.account.name,
                     level: 4
-                })
+                });
                 commands.set(a.name, a);
             } catch (e) {
                 log("loading commands failed:", "zeroMod", {
@@ -28,7 +28,7 @@ export = {
                     saveFile: false,
                     username: tools.account.name,
                     level: 2
-                })
+                });
                 console.error(e);
                 continue;
             }
@@ -45,6 +45,6 @@ export = {
             saveFile: false,
             username: tools.account.name,
             level: 4
-        })
+        });
     }
 }

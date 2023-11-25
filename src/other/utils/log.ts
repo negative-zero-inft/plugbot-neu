@@ -21,7 +21,7 @@ export default (text: string, appname: string, optional?: {
     level?: LOGLEVEL
 }) => {
 
-    var username: string = optional?.username || "no user";
+    const username: string = optional?.username || "no user";
     let logMsg: string = styleSetup(logConf.body, optional?.username);
     logMsg = logMsg.replace("'LT'", logConf.symbols[optional?.level || 0]).replace("'LOG'", text).replace("'USER'", username).replace("'APP'", appname);
     if (optional?.display) {
