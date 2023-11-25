@@ -1,4 +1,4 @@
-import { readdirSync } from "fs";
+import { mkdir, mkdirSync, readdirSync, rm, rmdir, rmdirSync } from "fs";
 import { createInterface } from "readline";
 import { Writable } from "stream";
 import { styleSetup, log } from "./other/utils";
@@ -36,10 +36,17 @@ const accounts: Map<string, Account> = new Map<string, Account>();
 
 const run = async () => {
 
-    const acnts = readdirSync("./accounts").filter(file => file.endsWith(".json"));
+    // temp redoing
+    rmdirSync("./temp", { recursive: true })
+    mkdir("./temp", {}, (err) =>{
+
+        err
+        "shut up"
+    })
+    const acnts = readdirSync("./userSpace/accounts").filter(file => file.endsWith(".json"));
     for (const u of acnts) {
         try {
-            const a: Account = await require(`../accounts/${u}`);
+            const a: Account = await require(`../userSpace/accounts/${u}`);
             accounts.set(a.name, a);
             log(`found account ${a.name}`, "shell", {
                 display: true,
@@ -117,7 +124,7 @@ const newUserProc = async () => {
                     };
                     if (answer.toLowerCase() === "y" || answer.toLowerCase() === "yes") {
 
-                        appendFileSync(`./accounts/${name.replace("/", "_")}.json`, JSON.stringify(newUser));
+                        appendFileSync(`./userSpace/accounts/${name.replace("/", "_")}.json`, JSON.stringify(newUser));
                         log(`finished saving user ${name}`, "shell", {
                             display: true,
                             saveFile: true,

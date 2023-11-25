@@ -1,8 +1,8 @@
 import { CmdTools, pbpmRepo } from "../other/typing";
-import repos from "../configs/pbpm/repos.json";
+const repos: pbpmRepo[] = require("../../userSpace/repos.json") // awful workaround but if it works, it works
 import { log } from "../other/utils";
 import { simpleGit, SimpleGit, SimpleGitOptions } from 'simple-git';
-import { mkdirSync, rmdirSync, writeFile, writeFileSync } from "fs";
+import { mkdirSync, rm, rmSync, rmdirSync, writeFile, writeFileSync } from "fs";
 
 module.exports = {
     name: "pbpm",
@@ -79,6 +79,12 @@ module.exports = {
 const install = (tools: CmdTools) => {
 
     // TODO
+    return log("this option isn't ready yet.", "pbpm", {
+        display: true,
+        saveFile: false,
+        username: tools.account.name,
+        level: 1
+    })
     var pkgLink: string | undefined
     repos.forEach((r: pbpmRepo) => {
 
@@ -124,12 +130,26 @@ const add = (tools: CmdTools) => {
             return
         }
         const repo: pbpmRepo = require('../../temp/pbpm/repo.json')
-        console.log(repo)
+        if (repos.find(x => x.id === repo.id)) return log(`the repo with the id ${repo.id} has been installed already.`, "pbpm", {
+            display: true,
+            saveFile: false,
+            username: tools.account.name,
+            level: 1
+        })
+        tools.cmdTools.rl.question(`you're about to add ${repo.name}. continue? [Y/N] `, (a) => {
+
+            if (a != "y" || "yes") return log("cancelling the addition of the repo", "pbpm", {
+                display: true,
+                saveFile: false,
+                username: tools.account.name,
+                level: 0
+            })
+        })
         //@ts-ignore
         repos.push(repo)
-        writeFile("./build/configs/pbpm/repos.json", JSON.stringify(repos), (err) =>{
+        writeFile("./userSpace/repos.json", JSON.stringify(repos), (err) => {
 
-            if(err){
+            if (err) {
 
                 log("couldn't save new repo:", "pbpm", {
                     display: true,
@@ -141,10 +161,17 @@ const add = (tools: CmdTools) => {
             }
             rmdirSync("./temp/pbpm", { recursive: true })
         })
-    }) 
+    })
 }
 const refresh = (tools: CmdTools) => {
 
+    // TODO
+    return log("this option isn't ready yet.", "pbpm", {
+        display: true,
+        saveFile: false,
+        username: tools.account.name,
+        level: 1
+    })
     if (repos.length === 0) return log("no repos detected, cannot continue", "pbpm", {
         display: true,
         saveFile: false,
@@ -160,7 +187,46 @@ const refresh = (tools: CmdTools) => {
             trimmed: false,
         };
         const git: SimpleGit = simpleGit(options);
-        git.clone(r.repoLink)
-        rmdirSync(`./temp/${r.id}`)
+        git.clone(r.repoLink, "pbpm", {}, (err) => {
+
+            if (err) {
+    
+                log(`failed to fetch the repo at ${r.repoLink}:`, "pbpm", {
+                    display: true,
+                    saveFile: true,
+                    username: tools.account.name,
+                    level: 2
+                })
+                console.error(err)
+                return
+            }
+            const repo: pbpmRepo = require('../../temp/pbpm/repo.json')
+            // repos repos.find(x => x.id === repo.id)
+            tools.cmdTools.rl.question(`you're about to add ${repo.name}. continue? [Y/N] `, (a) => {
+    
+                if (a != "y" || "yes") return log("cancelling the addition of the repo", "pbpm", {
+                    display: true,
+                    saveFile: false,
+                    username: tools.account.name,
+                    level: 0
+                })
+            })
+            //@ts-ignore
+            repos.push(repo)
+            writeFile("./userSpace/repos.json", JSON.stringify(repos), (err) => {
+    
+                if (err) {
+    
+                    log("couldn't save new repo:", "pbpm", {
+                        display: true,
+                        saveFile: false,
+                        username: tools.account.name,
+                        level: 2
+                    })
+                    console.error(err)
+                }
+                rmdirSync("./temp/pbpm", { recursive: true })
+            })
+        })
     })
 }
