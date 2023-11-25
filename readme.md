@@ -12,5 +12,5 @@ after that, you can add any additional plugins that you find online
 *there is a package manager for plugbot planned, but it's still not ready*
 
 # features
-- command line interface for controlling the bot 
+- Command Line Interface for controlling the bot 
 - a modular system based on plugins
