@@ -49,14 +49,10 @@ const run = async () => {
             const a: Account = await require(`../userSpace/accounts/${u}`);
             accounts.set(a.name, a);
             log(`found account ${a.name}`, "shell", {
-                display: true,
-                saveFile: false,
                 level: 4
             });
         } catch (e) {
             log("loading accounts failed:", "shell", {
-                display: true,
-                saveFile: false,
                 level: 2
             });
             console.error(e);
@@ -69,8 +65,6 @@ const run = async () => {
         const acnt = accounts.get(name);
         if (!acnt) if (name.toLowerCase() === cfg.login.newAccountCmd) { newUserProc(); } else {
             log(cfg.login.accountMissingMsg, "shell", {
-                display: true,
-                saveFile: false,
                 level: 1
             }); run();
         } else {

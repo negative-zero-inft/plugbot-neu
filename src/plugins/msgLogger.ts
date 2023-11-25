@@ -10,16 +10,12 @@ export = {
     run: (tools: PluginTools) => {
 
         log("ready", "msgLogger", {
-
-            display: true,
             saveFile: true,
             username: tools.account.name
         });
         tools.client.on(Events.MessageCreate, (msg) => {
 
             log(`${msg.author.username} said ${msg.content}`, "msgLogger", {
-
-                display: true,
                 saveFile: true,
                 username: tools.account.name
             });

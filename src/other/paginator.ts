@@ -2,7 +2,7 @@
 import { APIEmbed, ActionRowBuilder, ButtonBuilder, ButtonStyle, CacheType, EmbedBuilder, Events, Interaction, InteractionType, Message } from "discord.js";
 import { uniqueID, log } from "./utils";
 import { PlugBot } from "./client";
-// <3 <3
+
 export async function paginator(msg: Message, client: PlugBot, embeds: APIEmbed[], options?: { content?: string }) {
     let currentPage = 0;
 
@@ -38,29 +38,17 @@ export async function paginator(msg: Message, client: PlugBot, embeds: APIEmbed[
                 case `prev-${id}`:
                     if (currentPage == 0) break;
                     currentPage--;
-                    log(`${i.user.username} has changed to page ${currentPage}`, "paginator", {
-                        display: true,
-                        saveFile: false,
-                        level: 0
-                    });
+                    log(`${i.user.username} has changed to page ${currentPage}`, "paginator");
                     msgContent.embeds = [embeds[currentPage]];
                     break;
                 case `next-${id}`:
                     if (embeds.length <= currentPage + 1) break;
                     currentPage++;
-                    log(`${i.user.username} has changed to page ${currentPage}`, "paginator", {
-                        display: true,
-                        saveFile: false,
-                        level: 0
-                    });
+                    log(`${i.user.username} has changed to page ${currentPage}`, "paginator");
                     msgContent.embeds = [embeds[currentPage]];
                     break;
                 case `pageview-${id}`:
-                    log(`${i.user.username} is opening page preview. ${embeds.length} pages.`, "paginator", {
-                        display: true,
-                        saveFile: false,
-                        level: 0
-                    });
+                    log(`${i.user.username} is opening page preview. ${embeds.length} pages.`, "paginator");
                     await i.reply({
                         embeds: [
                             new EmbedBuilder()

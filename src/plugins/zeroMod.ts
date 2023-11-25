@@ -16,16 +16,12 @@ export = {
             try {
                 const a: PluginCommand = await require(`../other/zeromod/cmds/${u}`);
                 log(`found command ${a.name}`, "zeroMod", {
-                    display: true,
-                    saveFile: false,
                     username: tools.account.name,
                     level: 4
                 });
                 commands.set(a.name, a);
             } catch (e) {
                 log("loading commands failed:", "zeroMod", {
-                    display: true,
-                    saveFile: false,
                     username: tools.account.name,
                     level: 2
                 });
@@ -41,8 +37,6 @@ export = {
         // mods should be able to assign the user to their profile
         // i have no clue how to do this doe and i'm at school so ehh
         log("ready", "zeroMod", {
-            display: true,
-            saveFile: false,
             username: tools.account.name,
             level: 4
         });

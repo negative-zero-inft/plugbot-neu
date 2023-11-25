@@ -12,18 +12,23 @@ enum LOGLEVEL {
     SUCCESS
 }
 
-export default (text: string, appname: string, optional?: {
-
-    // cnb please make this slimmer :3
-    display?: boolean,
-    saveFile?: boolean,
-    username?: string,
+interface logOptions {
+    display?: boolean
+    saveFile?: boolean
+    username?: string
     level?: LOGLEVEL
+}
+
+export default (text: string, appname: string, optional: logOptions = {
+    display: true,
+    saveFile: false,
+    username: "no user",
+    level: LOGLEVEL.STANDARD
 }) => {
 
-    const username: string = optional?.username || "no user";
-    let logMsg: string = styleSetup(logConf.body, optional?.username);
-    logMsg = logMsg.replace("'LT'", logConf.symbols[optional?.level || 0]).replace("'LOG'", text).replace("'USER'", username).replace("'APP'", appname);
+    const username: string = optional.username || "no user";
+    let logMsg: string = styleSetup(logConf.body, username);
+    logMsg = logMsg.replace("'LT'", logConf.symbols[optional.level || 0]).replace("'LOG'", text).replace("'USER'", username).replace("'APP'", appname);
     if (optional?.display) {
 
         switch (optional?.level) {

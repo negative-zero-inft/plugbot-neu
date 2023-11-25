@@ -16,8 +16,6 @@ async function textCmdHandler(allCmds: cmdCollection[], tools: PluginTools, msg:
         if (cmds.cmds.length === 0) {
 
             log(`plugin ${cmds.plugin} has no commands, skipping.`, "universalHelp", {
-                display: true,
-                saveFile: false,
                 username: tools.account.name,
                 level: 1
             });
@@ -65,8 +63,6 @@ module.exports = {
         tools.client.plugins.forEach(p => {
 
             log(`registered ${p.name}`, "universalHelp", {
-
-                display: true,
                 username: tools.account.name
             });
 

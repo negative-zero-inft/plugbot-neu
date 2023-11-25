@@ -22,8 +22,6 @@ export default async (rl: Interface, account: Account) => {
 const run = async (rl: Interface, account: Account) => {
 
     log(cfg.bot.ready, "shell", {
-        display: true,
-        saveFile: false,
         username: account.name,
         level: 4
     });
@@ -33,16 +31,12 @@ const run = async (rl: Interface, account: Account) => {
             if (!a.name || !a.run || !a.version || !a.developers) {
 
                 log(`found found an invalid plugin (${u})`, "shell", {
-                    display: true,
-                    saveFile: false,
                     username: account.name,
                     level: 1
                 });
                 continue;
             }
             log(`found plugin ${a.name} (${a.version})`, "shell", {
-                display: true,
-                saveFile: false,
                 username: account.name,
                 level: 4
             });
@@ -50,8 +44,6 @@ const run = async (rl: Interface, account: Account) => {
             client.plugins.set(a.name, a);
         } catch (e) {
             log("loading plugins failed:", "shell", {
-                display: true,
-                saveFile: false,
                 username: account.name,
                 level: 2
             });
@@ -72,8 +64,6 @@ const cmdLoop = async (rl: Interface, account: Account) => {
             if (!a.name || !a.desc || !a.run || !a.usage || !a.version || !a.developers) {
 
                 log(`found found an invalid command (${u})`, "shell", {
-                    display: true,
-                    saveFile: false,
                     username: account.name,
                     level: 1
                 });
@@ -82,8 +72,6 @@ const cmdLoop = async (rl: Interface, account: Account) => {
             commands.set(a.name, a);
         } catch (e) {
             log("loading commands failed:", "shell", {
-                display: true,
-                saveFile: false,
                 username: account.name,
                 level: 2
             });
@@ -123,16 +111,12 @@ const cmdLoop = async (rl: Interface, account: Account) => {
             } catch (err) {
 
                 log("the program has crashed:", primArgs[0], {
-                    display: true,
-                    saveFile: false,
                     username: account.name,
                     level: 2
                 });
                 console.error(err);
             }
         } else log(`command ${primArgs[0]} does not exist`, "shell", {
-            display: true,
-            saveFile: false,
             username: account.name,
             level: 1
         });
