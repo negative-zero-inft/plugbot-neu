@@ -6,4 +6,4 @@ logs/*
 testPkg
 pbpmStuff
 temp/*
-userSpace/*
+userSpace/**/*

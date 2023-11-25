@@ -7,8 +7,8 @@ const repos: pbpmRepo[] = JSONrequire("../../userSpace/repos.json");  // best wo
 
 module.exports = {
     name: "pbpm",
-    developers: ["nrd"],
-    version: "0.0.1",
+    developers: ["nrd", "catnowblue"],
+    version: "0.0.2",
     desc: "the plugbot package manager",
     usage: "pbpm [add/install/view/refresh] [package name]",
     run: async (tools: CmdTools) => {

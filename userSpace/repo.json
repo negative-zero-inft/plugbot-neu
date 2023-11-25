@@ -1,1 +1,14 @@
-[]
+{
+    "name": "official -0 pbpm repo",
+    "id": "nzPbpmRepo",
+    "maintainers": [
+        "nrd"
+    ],
+    "repoLink": "https://github.com/negative-zero-inft/pbpmRepo",
+    "packages": [
+        {
+            "name": "test",
+            "link": "https://github.com/NRDsstuff/pbpmTestPkg"
+        }
+    ]
+}
