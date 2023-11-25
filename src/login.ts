@@ -1,4 +1,4 @@
-import { mkdir, mkdirSync, readdirSync, rm, rmdir, rmdirSync } from "fs";
+import { mkdir, readdirSync, rmSync } from "fs";
 import { createInterface } from "readline";
 import { Writable } from "stream";
 import { styleSetup, log } from "./other/utils";
@@ -37,8 +37,8 @@ const accounts: Map<string, Account> = new Map<string, Account>();
 const run = async () => {
 
     // temp redoing
-    rmdirSync("./temp", { recursive: true });
-    mkdir("./temp", {}, (err) =>{
+    rmSync("./temp", { recursive: true });
+    mkdir("./temp", {}, (err) => {
 
         err;
         "shut up";
@@ -67,11 +67,13 @@ const run = async () => {
     rl.question(styleSetup(cfg.login.q.name), async (name) => {
 
         const acnt = accounts.get(name);
-        if (!acnt) if (name.toLowerCase() === cfg.login.newAccountCmd) { newUserProc(); } else { log(cfg.login.accountMissingMsg, "shell", {
-            display: true,
-            saveFile: false,
-            level: 1
-        }); run(); } else {
+        if (!acnt) if (name.toLowerCase() === cfg.login.newAccountCmd) { newUserProc(); } else {
+            log(cfg.login.accountMissingMsg, "shell", {
+                display: true,
+                saveFile: false,
+                level: 1
+            }); run();
+        } else {
 
             isInputVisible = false;
             process.stdout.write(styleSetup(cfg.login.q.password));
@@ -90,16 +92,20 @@ const newUserProc = async () => {
 
     rl.question(cfg.newAcc.q.name, (name) => {
 
-        if (accounts.get(name)) { log(cfg.newAcc.exists, "shell", {
-            display: true,
-            saveFile: false,
-            level: 1
-        }); return run(); }
-        if (name.toLowerCase() === cfg.login.newAccountCmd) { log(cfg.newAcc.exists, "shell", {
-            display: true,
-            saveFile: false,
-            level: 1
-        }); return run(); }
+        if (accounts.get(name)) {
+            log(cfg.newAcc.exists, "shell", {
+                display: true,
+                saveFile: false,
+                level: 1
+            }); return run();
+        }
+        if (name.toLowerCase() === cfg.login.newAccountCmd) {
+            log(cfg.newAcc.exists, "shell", {
+                display: true,
+                saveFile: false,
+                level: 1
+            }); return run();
+        }
 
         rl.question(cfg.newAcc.q.pswd, (pswd) => {
 
@@ -140,11 +146,11 @@ const newUserProc = async () => {
 rl.on("close", () => {
     exit();
 });
-rl.on("pause", () => { 
+rl.on("pause", () => {
     log("readline was paused", "shell", {
         display: true,
         saveFile: false,
         level: 1
-    }); 
+    });
 });
 run();

@@ -1,7 +1,7 @@
 import { CmdTools, pbpmRepo } from "../other/typing";
 import { JSONrequire, log } from "../other/utils";
 import { simpleGit, SimpleGit, SimpleGitOptions } from "simple-git";
-import { rmdirSync, writeFile } from "fs";
+import { rmSync, writeFile } from "fs";
 // ! needs cleanup
 const repos: pbpmRepo[] = JSONrequire("../../userSpace/repos.json");  // best workaround :)
 
@@ -163,7 +163,7 @@ const add = (tools: CmdTools) => {
 
                 lastAction: "add"
             });
-            rmdirSync("./temp/pbpm", { recursive: true });
+            rmSync("./temp/pbpm", { recursive: true });
         });
     });
 };
@@ -228,7 +228,7 @@ const refresh = (tools: CmdTools) => {
                     });
                     console.error(err);
                 }
-                rmdirSync("./temp/pbpm", { recursive: true });
+                rmSync("./temp/pbpm", { recursive: true });
             });
         });
     });
