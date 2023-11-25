@@ -13,14 +13,10 @@ export = {
 
         const channelid = tools.input.args[1];
         if (!channelid || !isValidSnowflake(channelid)) return log("please input the channel id", "sendmsg", {
-            display: true,
-            saveFile: false,
             username: tools.account.name,
             level: 1
         });
         if (!tools.input.args[2]) return log("please input the message content", "sendmsg", {
-            display: true,
-            saveFile: false,
             username: tools.account.name,
             level: 1
         });
@@ -28,7 +24,6 @@ export = {
         const msg = tools.input.args.splice(2).join(" ");
         channel.send(msg);
         log(`sent ${msg}`, "sendmsg", {
-            display: true,
             saveFile: true,
             username: tools.account.name,
             level: 4

@@ -8,6 +8,7 @@ import { appendFileSync } from "fs";
 import shell from "./shell";
 import { Account } from "./other/typing";
 import { exit } from "process";
+import colors from "chalk";
 
 // set to false when dealing with passwords
 let isInputVisible = true;
@@ -64,9 +65,7 @@ const run = async () => {
 
         const acnt = accounts.get(name);
         if (!acnt) if (name.toLowerCase() === cfg.login.newAccountCmd) { newUserProc(); } else {
-            log(cfg.login.accountMissingMsg, "shell", {
-                level: 1
-            }); run();
+            log(cfg.login.accountMissingMsg, "shell", { level: 1 }); run();
         } else {
 
             isInputVisible = false;
@@ -87,18 +86,10 @@ const newUserProc = async () => {
     rl.question(cfg.newAcc.q.name, (name) => {
 
         if (accounts.get(name)) {
-            log(cfg.newAcc.exists, "shell", {
-                display: true,
-                saveFile: false,
-                level: 1
-            }); return run();
+            log(cfg.newAcc.exists, "shell", { level: 1 }); return run();
         }
         if (name.toLowerCase() === cfg.login.newAccountCmd) {
-            log(cfg.newAcc.exists, "shell", {
-                display: true,
-                saveFile: false,
-                level: 1
-            }); return run();
+            log(cfg.newAcc.exists, "shell", { level: 1 }); return run();
         }
 
         rl.question(cfg.newAcc.q.pswd, (pswd) => {
@@ -111,7 +102,7 @@ const newUserProc = async () => {
                     password: pswd,
                     token: token
                 };
-                console.log(newUser);
+                console.log(`the new user will look like this:\n${colors.bold("name")}: ${newUser.name}\n${colors.bold("password")}: ${newUser.password}\n${colors.bold("token")}: ${newUser.token}`);
                 rl.question(cfg.newAcc.q.confirm, async (answer) => {
 
                     const salt = await genSalt(10);
@@ -126,7 +117,6 @@ const newUserProc = async () => {
 
                         appendFileSync(`./userSpace/accounts/${name.replace("/", "_")}.json`, JSON.stringify(newUser));
                         log(`finished saving user ${name}`, "shell", {
-                            display: true,
                             saveFile: true,
                             level: 4
                         });

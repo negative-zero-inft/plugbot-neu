@@ -37,6 +37,7 @@ const run = async (rl: Interface, account: Account) => {
                 continue;
             }
             log(`found plugin ${a.name} (${a.version})`, "shell", {
+                display: true,
                 username: account.name,
                 level: 4
             });
@@ -84,8 +85,7 @@ const cmdLoop = async (rl: Interface, account: Account) => {
         log(`entered ${line} into command line`, "shell", {
             display: false,
             saveFile: true,
-            username: account.name,
-            level: 0
+            username: account.name
         });
         const primArgs = line.split(" ");
         if (commands.has(primArgs[0])) {
@@ -116,7 +116,7 @@ const cmdLoop = async (rl: Interface, account: Account) => {
                 });
                 console.error(err);
             }
-        } else log(`command ${primArgs[0]} does not exist`, "shell", {
+        } else log(`command "${primArgs[0]}" does not exist`, "shell", {
             username: account.name,
             level: 1
         });

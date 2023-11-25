@@ -21,11 +21,14 @@ module.exports = {
 		"@typescript-eslint"
 	],
 	"rules": {
-		"indent": [
-			"error",
-			4,
-			{ "SwitchCase": 1 }
-		],
+		// "indent": [
+		// 	"error",
+		// 	4,
+		// 	{
+		// 		"SwitchCase": 1, "MemberExpression": 1,
+		// 		"FunctionDeclaration": { "body": 1, "parameters": 2 }
+		// 	} // that sjust weird
+		// ], // :3
 		"no-unused-vars": "off",
 		"@typescript-eslint/no-unused-vars": [
 			"error",

@@ -32,7 +32,7 @@ async function textCmdHandler(allCmds: cmdCollection[], tools: PluginTools, msg:
         }
         embeds.push(e.toJSON());
     }
-    await paginator(msg, tools.client, embeds, { content: "Installed plugins:" });
+    await paginator(msg, tools.client, embeds, { content: "Installed plugins:" }, tools.account.name);
 }
 
 module.exports = {

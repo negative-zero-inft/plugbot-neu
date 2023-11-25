@@ -14,20 +14,14 @@ export = {
         const messageId = tools.input.args[1];
 
         if (!messageId || !isValidSnowflake(messageId)) return log("please input the message id that you're replying to", "reply", {
-            display: true,
-            saveFile: false,
             username: tools.account.name,
             level: 1
         });
         if (!channelId || !isValidSnowflake(channelId)) return log("please input the channel id that you're replying in", "reply", {
-            display: true,
-            saveFile: false,
             username: tools.account.name,
             level: 1
         });
         if (!tools.input.args[3]) return log("please input the message content", "reply", {
-            display: true,
-            saveFile: false,
             username: tools.account.name,
             level: 1
         });
@@ -37,7 +31,6 @@ export = {
         channel.messages.fetch(messageId).then(m => {
             m.reply(msg);
             log(`sent ${msg} in reply to ${m.content}`, "reply", {
-                display: true,
                 saveFile: true,
                 username: tools.account.name,
                 level: 4

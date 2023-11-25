@@ -1,10 +1,12 @@
-// this file won't get bloated at all
+// this file won"t get bloated at all
 import Color from "color";
 import ss from "./utils/styleSetup";
 import lg from "./utils/log";
 import { readFileSync } from "fs";
 import { readFile } from "fs/promises";
 import { join } from "path";
+import { Console } from "console";
+import { Transform } from "stream";
 
 enum LOGLEVEL {
     SAY_GEX = -1,
@@ -26,14 +28,18 @@ export function styleSetup(toSetup: string, username?: string) {
     return ss(toSetup, username);
 }
 
-export function log(text: string, appName: string, optional?: {
+export function log(text: string, appName: string, optional: {
 
     display?: boolean,
     saveFile?: boolean,
     username?: string,
     level?: LOGLEVEL
-}) {
-
+} = {
+        display: true,
+        saveFile: false,
+        username: "no user",
+        level: LOGLEVEL.STANDARD
+    }) {
     lg(text, appName, optional);
 }
 
@@ -41,7 +47,7 @@ export function colorConverter(color: string | number): number {
     return Color(color).rgbNumber();
 }
 
-// used for buttons' custom id to prevent from duplicate trigger
+// used for buttons" custom id to prevent from duplicate trigger
 export function uniqueID(length: number) {
     let result = "";
     const characters =
@@ -65,4 +71,22 @@ export function JSONrequire<T>(path: string) {
 
 export async function asyncJSONrequire<T>(path: string) {
     return JSON.parse((await readFile(join(__dirname, path))).toString()) as T;
+}
+
+export function table(input: Array<unknown>) {
+
+    const ts = new Transform({ transform(chunk, _, cb) { cb(null, chunk); } });
+    const logger = new Console({ stdout: ts });
+    logger.table(input);
+    const table = (ts.read() || "").toString();
+    let result = "";
+    for (const row of table.split(/[\r\n]+/)) {
+        let r = row.replace(/[^┬]*┬/, "┌");
+        r = r.replace(/^├─*┼/, "├");
+        r = r.replace(/│[^│]*/, "");
+        r = r.replace(/^└─*┴/, "└");
+        r = r.replace(/"/g, " ");
+        result += `${r}\n`;
+    }
+    return result;
 }

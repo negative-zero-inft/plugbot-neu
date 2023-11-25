@@ -3,7 +3,7 @@ import { APIEmbed, ActionRowBuilder, ButtonBuilder, ButtonStyle, CacheType, Embe
 import { uniqueID, log } from "./utils";
 import { PlugBot } from "./client";
 
-export async function paginator(msg: Message, client: PlugBot, embeds: APIEmbed[], options?: { content?: string }) {
+export async function paginator(msg: Message, client: PlugBot, embeds: APIEmbed[], options?: { content?: string }, accountName?: string) {
     let currentPage = 0;
 
     const id = uniqueID(6);
@@ -12,7 +12,6 @@ export async function paginator(msg: Message, client: PlugBot, embeds: APIEmbed[
         .setCustomId(`next-${id}`)
         .setEmoji("➡️")
         .setStyle(ButtonStyle.Primary);
-
 
     const prevbtns = new ButtonBuilder()
         .setCustomId(`prev-${id}`)
@@ -26,6 +25,7 @@ export async function paginator(msg: Message, client: PlugBot, embeds: APIEmbed[
 
     const row = new ActionRowBuilder<ButtonBuilder>()
         .addComponents(prevbtns, pageView, nextbtns);
+
     const msgContent = {
         content: options?.content,
         embeds: [embeds[currentPage]],
@@ -38,17 +38,17 @@ export async function paginator(msg: Message, client: PlugBot, embeds: APIEmbed[
                 case `prev-${id}`:
                     if (currentPage == 0) break;
                     currentPage--;
-                    log(`${i.user.username} has changed to page ${currentPage}`, "paginator");
+                    log(`${i.user.username} has changed to page ${currentPage}`, "paginator", { username: accountName || undefined });
                     msgContent.embeds = [embeds[currentPage]];
                     break;
                 case `next-${id}`:
                     if (embeds.length <= currentPage + 1) break;
                     currentPage++;
-                    log(`${i.user.username} has changed to page ${currentPage}`, "paginator");
+                    log(`${i.user.username} has changed to page ${currentPage}`, "paginator", { username: accountName || undefined });
                     msgContent.embeds = [embeds[currentPage]];
                     break;
                 case `pageview-${id}`:
-                    log(`${i.user.username} is opening page preview. ${embeds.length} pages.`, "paginator");
+                    log(`${i.user.username} is opening page preview. ${embeds.length} pages.`, "paginator", { username: accountName || undefined });
                     await i.reply({
                         embeds: [
                             new EmbedBuilder()

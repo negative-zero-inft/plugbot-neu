@@ -1,8 +1,6 @@
 {
     "login": {
-
         "q": {
-
             "name": "please input the account name (or NEW to create a new account) ",
             "password": "please input the password for this account "
         },
@@ -10,9 +8,7 @@
         "newAccountCmd": "new"
     },
     "newAcc": {
-
         "q": {
-
             "name": "please input the name of the new account ",
             "pswd": "please input the password of this account ",
             "token": "please input the discord token for this account ",
@@ -21,11 +17,9 @@
         "exists": "this user already exists."
     },
     "bot": {
-
         "ready": "the bot has successfully logged in."
     },
     "shell": {
-        
-        "prompt": "['DD'.'DM'.'DY' 'DMI':'DH']'N'['U' @ 'HN']'N'==>>"
+        "prompt": "['DD'.'DM'.'DY' 'DH':'DMI']'N'['U' @ 'HN']'N'==>>"
     }
 }

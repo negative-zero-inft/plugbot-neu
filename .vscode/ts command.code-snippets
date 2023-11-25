@@ -65,10 +65,7 @@
 		"body": [
 
 			"log($1, $2, {",
-			"	display: $3,"
-			"	saveFile: $4,",
 			"	username: ${5:tools.account.name},",
-			"	level: $6"
 			"})"
 		]
 	}
