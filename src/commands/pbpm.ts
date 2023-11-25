@@ -159,6 +159,10 @@ const add = (tools: CmdTools) => {
                 })
                 console.error(err)
             }
+            tools.cmdTools.mem.set("pbpm", {
+
+                lastAction: "add"
+            })
             rmdirSync("./temp/pbpm", { recursive: true })
         })
     })
