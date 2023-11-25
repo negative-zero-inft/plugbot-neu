@@ -4,6 +4,7 @@ import ss from "./utils/styleSetup";
 import lg from "./utils/log";
 import { readFileSync } from "fs";
 import { readFile } from "fs/promises";
+import { join } from "path";
 
 enum LOGLEVEL {
     SAY_GEX = -1,
@@ -59,9 +60,9 @@ export function uniqueID(length: number) {
 
 // Better than using require() to load JSON stuff
 export function JSONrequire<T>(path: string) {
-    return JSON.parse(readFileSync(path).toString()) as T;
+    return JSON.parse(readFileSync(join(__dirname, path)).toString()) as T;
 }
 
 export async function asyncJSONrequire<T>(path: string) {
-    return JSON.parse((await readFile(path)).toString()) as T;
+    return JSON.parse((await readFile(join(__dirname, path))).toString()) as T;
 }
