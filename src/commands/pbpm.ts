@@ -4,6 +4,8 @@ import { log } from "../other/utils";
 import { simpleGit, SimpleGit, SimpleGitOptions } from 'simple-git';
 import { mkdirSync, rm, rmSync, rmdirSync, writeFile, writeFileSync } from "fs";
 
+// ! needs cleanup
+
 module.exports = {
     name: "pbpm",
     developers: ["nrd"],
