@@ -3,6 +3,7 @@ src/logs
 node_modules
 build/
 logs/*
+!logs/.gitkeep
 testPkg
 pbpmStuff
 temp/*
