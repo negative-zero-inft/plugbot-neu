@@ -19,6 +19,13 @@ module.exports = {
             level: 1
         });
 
+        function noLogRepoError() {
+            return log("no pbpm repos detected. consider adding the default -0 repository\npbpm a https://github.com/negative-zero-inft/pbpmRepo", "pbpm", {
+                username: tools.account.name,
+                level: 1
+            });
+        }
+
         let noRepos: boolean = false;
         if (repos.length === 0) noRepos = true;
 
@@ -31,40 +38,28 @@ module.exports = {
 
             case "i":
             case "install":
-                if (noRepos) return log("no pbpm repos detected. consider adding the default -0 repository\npbpm a https://github.com/negative-zero-inft/pbpmRepo", "pbpm", {
-                    username: tools.account.name,
-                    level: 1
-                });
+                if (noRepos) return noLogRepoError();
                 // install script
                 install();
                 break;
 
             case "v":
             case "view":
-                if (noRepos) return log("no pbpm repos detected. consider adding the default -0 repository\npbpm a https://github.com/negative-zero-inft/pbpmRepo", "pbpm", {
-                    username: tools.account.name,
-                    level: 1
-                });
+                if (noRepos) return noLogRepoError();
                 // view repos
                 view();
                 break;
 
             case "r":
             case "refresh":
-                if (noRepos) return log("no pbpm repos detected. consider adding the default -0 repository\npbpm a https://github.com/negative-zero-inft/pbpmRepo", "pbpm", {
-                    username: tools.account.name,
-                    level: 1
-                });
+                if (noRepos) return noLogRepoError();
                 // refresh repos
                 // refresh(tools, repos);
                 break;
 
             case "l":
             case "list":
-                if (noRepos) return log("no pbpm repos detected. consider adding the default -0 repository\npbpm a https://github.com/negative-zero-inft/pbpmRepo", "pbpm", {
-                    username: tools.account.name,
-                    level: 1
-                });
+                if (noRepos) return noLogRepoError();
                 // list packages for each repo
                 list();
                 break;
