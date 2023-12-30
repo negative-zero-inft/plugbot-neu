@@ -56,7 +56,7 @@ module.exports = {
                     level: 1
                 });
                 // refresh repos
-                refresh();
+                // refresh(tools, repos);
                 break;
 
             case "l":
