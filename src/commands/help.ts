@@ -3,9 +3,9 @@ import c from "chalk";
 
 export = {
     name: "help",
-    developers: ["nrd", "catnowblue", "richard stallman", "gabe newell", "sex", "sex", "sex", "sex", "sex", "sex"],
+    developers: ["nrd", "catnowblue"],
     version: "1.1.0",
-    desc: "help command. kijetesantakalu kijetesantakalu kijetesantakalu kijetesantakalu kijetesantakalu kijetesantakalu kijetesantakalu kijetesantakalu kijetesantakalu kijetesantakalu ",
+    desc: "help command.",
     usage: "help ",
     run: (tools: CmdTools) => {
         const array = Array.from(tools.cmdTools.cmds.values());
