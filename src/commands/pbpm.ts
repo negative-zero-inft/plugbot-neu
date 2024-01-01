@@ -1,7 +1,7 @@
 import { CmdTools, pbpmRepo } from "../other/typing";
 import { JSONrequire, log } from "../other/utils";
 import install from "../other/pbpm/install";
-import refresh from "../other/pbpm/refresh";
+// import refresh from "../other/pbpm/refresh";
 import add from "../other/pbpm/add";
 
 const repos: pbpmRepo[] = JSONrequire("../../userSpace/repos.json");  // best workaround :)
