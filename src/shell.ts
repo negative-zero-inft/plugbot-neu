@@ -98,7 +98,7 @@ const cmdLoop = async (rl: Interface, account: Account) => {
             //     const v = c.pop().join(" "); // how do i...
             //     advArgs.set(c[0], v);
             // });
-        }
+        };
         setUpAdvArgs();
         if (commands.has(primArgs[0])) {
             try {
