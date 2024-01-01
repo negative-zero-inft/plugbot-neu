@@ -38,7 +38,9 @@ const accounts: Map<string, Account> = new Map<string, Account>();
 const run = async () => {
 
     // temp redoing
-    rmSync("./temp", { recursive: true });
+    if (readdirSync(".").includes("temp")) {
+        rmSync("./temp", { recursive: true });
+    }
     mkdir("./temp", {}, (err) => {
 
         err;
