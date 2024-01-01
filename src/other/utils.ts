@@ -8,7 +8,7 @@ import { join } from "path";
 import { Console } from "console";
 import { Transform } from "stream";
 
-enum LOGLEVEL {
+export enum LOGLEVEL {
     SAY_GEX = -1,
     STANDARD = 0,
     WARN,

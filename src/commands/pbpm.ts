@@ -1,10 +1,9 @@
 import { CmdTools, pbpmRepo } from "../other/typing";
-import { JSONrequire, log } from "../other/utils";
+import { JSONrequire, LOGLEVEL, log } from "../other/utils";
 import install from "../other/pbpm/install";
 import refresh from "../other/pbpm/refresh";
 import add from "../other/pbpm/add";
 
-const repos: pbpmRepo[] = JSONrequire("../../userSpace/repos.json");  // best workaround :)
 
 module.exports = {
     name: "pbpm",
@@ -13,6 +12,15 @@ module.exports = {
     desc: "the plugbot package manager",
     usage: "pbpm [add/install/view/refresh/list] [package name]",
     run: async (tools: CmdTools) => {
+
+        let repos: pbpmRepo[];
+        try {
+            repos = JSONrequire("../../userSpace/repos.json");
+        } catch {
+            // if repos.json file failed to load, we just set it to empty array
+            repos = [];
+            log("The file repo.json couldn't load or doesn't exist.", "pbpm", { display: true, username: tools.account.name, level: LOGLEVEL.WARN });
+        }
 
         if (!tools.input.args[1]) return log("please input what action to perform", "pbpm", {
             username: tools.account.name,
