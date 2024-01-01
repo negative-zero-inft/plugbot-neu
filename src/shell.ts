@@ -88,8 +88,19 @@ const cmdLoop = async (rl: Interface, account: Account) => {
             username: account.name
         });
         const primArgs = line.split(" ");
-        if (commands.has(primArgs[0])) {
+        const advArgs = new Map();
+        const setUpAdvArgs = () => {
 
+            // const a: string[] = line.split("-").pop(); 
+            // a?.forEach(b => {
+
+            //     const c = b.split(" ");
+            //     const v = c.pop().join(" "); // how do i...
+            //     advArgs.set(c[0], v);
+            // });
+        }
+        setUpAdvArgs();
+        if (commands.has(primArgs[0])) {
             try {
 
                 commands.get(primArgs[0])?.run({
@@ -98,7 +109,8 @@ const cmdLoop = async (rl: Interface, account: Account) => {
                     input: {
 
                         raw: line,
-                        args: primArgs
+                        args: primArgs,
+                        advArgs: advArgs
                     },
                     cmdTools: {
 

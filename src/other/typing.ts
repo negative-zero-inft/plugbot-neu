@@ -20,7 +20,8 @@ export interface CmdTools {
     client: PlugBot,
     input: {
         raw: string,
-        args: string[]
+        args: string[],
+        advArgs: Map<string, string>;
     },
     cmdTools: {
         rl: Interface,
@@ -77,4 +78,8 @@ export interface pbpmRepo {
         name: string
         link: string
     }>
+}
+
+export interface PbpmArgs {
+    tools: CmdTools, repos: pbpmRepo[]
 }
