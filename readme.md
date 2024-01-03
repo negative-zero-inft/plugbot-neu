@@ -1,4 +1,4 @@
-# plugbot neu (pronounced \[neu\])
+# plugbot neu (pronounced \[nɛu\])
 a modular discord bot written in typescript
 # how to install
 ```sh
